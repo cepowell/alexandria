@@ -2,17 +2,15 @@ source 'https://rubygems.org'
 
 gem 'haml'
 
-gem 'rails_12factor', group: :production
-
 group :development, :test do
- # gem 'sqlite3'
+  gem 'sqlite3'
   gem 'byebug'
 end
-#group :production do
- # gem 'pg'
-#end
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+end
 
-gem 'pg'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 
