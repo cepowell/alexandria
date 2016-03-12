@@ -4,7 +4,7 @@ gem 'haml'
 
 group :development, :test do
   gem 'sqlite3'
-  gem 'debugger'
+  gem 'byebug'
 end
 
 group :production do
