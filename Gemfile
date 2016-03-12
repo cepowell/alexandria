@@ -2,11 +2,12 @@ source 'https://rubygems.org'
 
 gem 'haml'
 
+gem 'rails_12factor', group: :production
+
 group :development, :test do
  # gem 'sqlite3'
   gem 'byebug'
 end
-
 #group :production do
  # gem 'pg'
 #end
