@@ -1,0 +1,29 @@
+# == Schema Information
+#
+# Table name: documents
+#
+#  id             :integer         not null, primary key
+#  users_id       :integer
+#  collections_id :integer
+#  name           :string
+#  filePath       :string
+#  isPublished    :boolean
+#  created_at     :datetime        not null
+#  updated_at     :datetime        not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  users_id: 
+  collections_id: 
+  name: MyString
+  filePath: MyString
+  isPublished: false
+
+two:
+  users_id: 
+  collections_id: 
+  name: MyString
+  filePath: MyString
+  isPublished: false

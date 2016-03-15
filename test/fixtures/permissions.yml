@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: permissions
+#
+#  id         :integer         not null, primary key
+#  users_id   :integer
+#  files_id   :integer
+#  access     :string
+#  created_at :datetime        not null
+#  updated_at :datetime        not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  users_id: 
+  files_id: 
+  access: 
+
+two:
+  users_id: 
+  files_id: 
+  access: 

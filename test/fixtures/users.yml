@@ -1,0 +1,31 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id          :integer         not null, primary key
+#  first       :string
+#  last        :string
+#  email       :string
+#  password    :string
+#  emailOptOut :boolean
+#  created_at  :datetime        not null
+#  updated_at  :datetime        not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  first: MyString
+  last: MyString
+  email: MyString
+  password: MyString
+  emailOptOut: false
+
+two:
+  id: 1
+  first: MyString
+  last: MyString
+  email: MyString
+  password: MyString
+  emailOptOut: false
