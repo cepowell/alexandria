@@ -81,12 +81,16 @@ GEM
     multi_json (1.11.2)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
+<<<<<<< HEAD
     paperclip (4.3.5)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (= 0.3.0)
+=======
+    pg (0.18.4)
+>>>>>>> e732756f8cf7b1971fce5dbace9ca0da33a1365f
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -109,6 +113,11 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.5)
+    rails_stdout_logging (0.0.4)
     railties (4.2.5)
       actionpack (= 4.2.5)
       activesupport (= 4.2.5)
@@ -162,8 +171,13 @@ DEPENDENCIES
   haml
   jbuilder (~> 2.0)
   jquery-rails
+<<<<<<< HEAD
   paperclip (~> 4.2)
+=======
+  pg
+>>>>>>> e732756f8cf7b1971fce5dbace9ca0da33a1365f
   rails (= 4.2.5)
+  rails_12factor
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring

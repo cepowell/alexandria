@@ -1,1 +1,68 @@
-%h1 Welcome to Alexandria!
+<!--%h1 Welcome to Alexandria!-->
+!!! 5
+%html
+  %head
+    %title Project Alexandria
+    / jQuery
+    / <script src="js/jquery.min.js"></script>
+    / Custom Theme files
+    / theme-style
+    %link{:href => "css/style.css", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "http://fonts.googleapis.com/css?family=Martel:400,300,100,500,700,900", :rel => "stylesheet", :type => "text/css"}/
+    / //fonts
+  %body
+    .header
+      .header-left
+        .logo
+          %a{:href => "index.html"}
+            %img{:alt => "", :src => "/assets/alexandria_logo.jpg"}/
+        .top-nav
+          %ul
+            %li.active
+              %a{:href => "index.html"} HOME
+            %li
+              %a.black{:href => "work.html"} BROWSE
+            %li
+              %a.black1{:href => "about.html"} PROFILE
+        %ul.social-in
+          %li
+            %a{:href => "#"}
+              %i
+          %li
+            %a{:href => "#"}
+              %i.gmail
+          %li
+            %a{:href => "#"}
+              %i.twitter
+          %li
+            %a{:href => "#"}
+              %i.pin
+          %li
+            %a{:href => "#"}
+              %i.dribble
+          %li
+            %a{:href => "#"}
+              %i.behance
+        
+     
+      .content
+        .content-grid
+          %a.b-link-stripe.b-animate-go.thickbox{:href => "single.html"}
+            %img{:src => "assets/add_doc.jpg"}/
+            .b-wrapper
+              %h2.b-animate.b-from-left.b-delay03
+                %span CREATE NEW DOCUMENT
+              %i
+        .content-grid
+          %a.b-link-stripe.b-animate-go.thickbox{:href => "single.html"}
+            %img{:src => "assets/add_doc.jpg"}/
+            .b-wrapper
+              %h2.b-animate.b-from-left.b-delay03
+                %span CREATE NEW COLLECTION
+              %i
+        .content-grid
+
+        .clear
+        
+        
+      
