@@ -27,10 +27,13 @@ ActiveRecord::Schema.define(version: 20160311035934) do
     t.integer  "users_id"
     t.integer  "collections_id"
     t.string   "name"
-    t.string   "filePath"
     t.boolean  "isPublished"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.string   "doc_file_name"
+    t.string   "doc_content_type"
+    t.integer  "doc_file_size"
+    t.datetime "doc_updated_at"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   add_index "documents", ["collections_id"], name: "index_documents_on_collections_id"
@@ -38,13 +41,13 @@ ActiveRecord::Schema.define(version: 20160311035934) do
 
   create_table "permissions", force: :cascade do |t|
     t.integer  "users_id"
-    t.integer  "files_id"
+    t.integer  "documents_id"
     t.string   "access"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
-  add_index "permissions", ["files_id"], name: "index_permissions_on_files_id"
+  add_index "permissions", ["documents_id"], name: "index_permissions_on_documents_id"
   add_index "permissions", ["users_id"], name: "index_permissions_on_users_id"
 
   create_table "users", force: :cascade do |t|

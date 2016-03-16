@@ -2,13 +2,11 @@ source 'https://rubygems.org'
 
 gem 'haml'
 
-<<<<<<< HEAD
 gem 'paperclip','~> 4.2'
 
 gem 'annotate', '~>2.4.1.beta'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
-=======
 group :development, :test do
   gem 'sqlite3'
   gem 'byebug'
@@ -21,7 +19,6 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 
->>>>>>> e732756f8cf7b1971fce5dbace9ca0da33a1365f
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
