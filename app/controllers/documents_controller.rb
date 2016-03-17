@@ -23,11 +23,12 @@ class DocumentsController < ApplicationController
   
   def update
     @document = Document.find params[:id]
-    @document.update_attributes!(params[:document])
-    curFile = File.open(params[:name]+".txt")
-    curFile.write(params[:body])
-    curFile.close 
-    redirect_to document_path(@document)
+    if @document.update_attributes(params[:document])
+      redirect_to document_path(@document)
+    #curFile = File.open(params[:name]+".txt")
+    #curFile.write(params[:body])
+    #curFile.close 
+    end
   end
   
   def edit
@@ -35,7 +36,10 @@ class DocumentsController < ApplicationController
   end
   
   def destroy
-    
+    @document = Document.find(params[:id])
+    @document.destroy
+    flash[:notice] = "Document '#{@document.name}' deleted."
+    redirect_to documents_path  
   end
   
   

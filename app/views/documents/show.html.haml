@@ -1,0 +1,16 @@
+-# in app/views/documents/show.html.haml
+
+%h2 Details about #{@document.name}
+
+%ul#details
+  %li
+    Title:
+    = @document.name
+  %li
+    Body:
+    = @document.body
+    
+%p#description= @document.name
+= link_to 'Edit info ', edit_document_path(@document)
+= link_to ' Back to document list ', documents_path
+= link_to ' Delete ', document_path(@document), :method => :delete

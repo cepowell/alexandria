@@ -5,7 +5,7 @@ class CreateDocuments < ActiveRecord::Migration
       t.references :collections, index: true, foreign_key: true
       t.string :name
       t.boolean :isPublished
-      t.attachment :doc
+      t.string :body
       t.timestamps null: false
     end
   end

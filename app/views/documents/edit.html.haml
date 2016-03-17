@@ -1,8 +1,13 @@
 %h2 Edit Document
 
-= form_tag document_path(@document), :method => :post do
+= form_tag document_path(@document), :method => :put do
 
   = label :document, :name, 'Title'
-  = text_field :document, 'title'
+  = text_field :document, 'name'
+
+  = label :document, :body, 'Body'
+  = text_field :document, 'body'
+ 
+
 
   = submit_tag 'Save Changes'

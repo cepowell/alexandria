@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160311035934) do
+ActiveRecord::Schema.define(version: 20160317223207) do
 
   create_table "collections", force: :cascade do |t|
     t.integer  "users_id"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20160311035934) do
     t.datetime "doc_updated_at"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.string   "body"
   end
 
   add_index "documents", ["collections_id"], name: "index_documents_on_collections_id"
