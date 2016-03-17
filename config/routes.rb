@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  #adding document routes
+  resources :documents
+  #get 'documents/'
   get 'home/index'
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,0 +1,17 @@
+-#  This file is app/views/documents/index.html.haml
+%h1 All Documents
+
+%table#documents
+  %thead
+    %tr
+      %th Document Title
+      %th More Info
+  %tbody
+    - @documents.each do |document|
+      %tr
+        %td= document.name 
+        %td= link_to "More about #{document.name}", document_path(document)
+        
+    -# add to end of index.html.haml
+
+= link_to 'Add new document', new_document_path

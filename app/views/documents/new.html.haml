@@ -1,0 +1,8 @@
+%h2 Create New Document
+
+= form_tag documents_path, :method => :post do
+
+  = label :document, :name, 'Title'
+  = text_field :document, :name
+
+  = submit_tag 'Save Changes'

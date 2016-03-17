@@ -1,5 +1,5 @@
 class CreateDocuments < ActiveRecord::Migration
-  def change
+  def up
     create_table :documents do |t|
       t.references :users, index: true, foreign_key: true
       t.references :collections, index: true, foreign_key: true
@@ -8,5 +8,9 @@ class CreateDocuments < ActiveRecord::Migration
       t.attachment :doc
       t.timestamps null: false
     end
+  end
+  
+  def down
+    drop_table 'documents'
   end
 end
