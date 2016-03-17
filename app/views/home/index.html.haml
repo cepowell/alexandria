@@ -26,8 +26,20 @@
           .row
             %section.feature.6u{:class => "12u$(small)"}
               %img.image.fit{:alt => "", :src => "/assets/pic02.jpg"}/
-              %p
-                Document table here.
+              %table#documents
+                %thead
+                  %tr
+                    %th Document Name
+                    %th Published?
+                    %th Created
+                    %th Updated
+                %tbody
+                  - @documents.each do |document|
+                    %tr
+                      %td= document.name 
+                      %td= document.isPublished
+                      %td= document.created_at
+                      %td= document.updated_at
 
 
   
