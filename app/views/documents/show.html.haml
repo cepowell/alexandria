@@ -12,5 +12,5 @@
     
 %p#description= @document.name
 = link_to 'Edit info ', edit_document_path(@document)
-= link_to ' Back to document list ', documents_path
+= link_to ' Return home ', root_path
 = link_to ' Delete ', document_path(@document), :method => :delete

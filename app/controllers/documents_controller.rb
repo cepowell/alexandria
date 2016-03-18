@@ -18,7 +18,7 @@ class DocumentsController < ApplicationController
     #curFile = File.new("test file", "w")
     #curFile.write("test body").save
     #curFile.close 
-    redirect_to documents_path
+    redirect_to root_path
   end
   
   def update
@@ -39,7 +39,7 @@ class DocumentsController < ApplicationController
     @document = Document.find(params[:id])
     @document.destroy
     flash[:notice] = "Document '#{@document.name}' deleted."
-    redirect_to documents_path  
+    redirect_to root_path  
   end
   
   

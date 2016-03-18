@@ -6,13 +6,15 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   /%body.landing
-  %header#header      
+  %header#header    
+    .container
     %h1
-      %a{:href => "#"} Project Alexandria
+      %a Project Alexandria
     %nav#nav
       %ul
         %li
-          %a{:href => "#"} Home
+          %a
+          =link_to "Home", root_path
         %li
           %a{:href => "#"} Browse
         %li
