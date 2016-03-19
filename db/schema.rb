@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20160319043647) do
   add_index "permissions", ["users_id"], name: "index_permissions_on_users_id"
 
   create_table "users", force: :cascade do |t|
+    t.integer  "id"
     t.string   "first"
     t.string   "last"
     t.string   "email"
