@@ -232,7 +232,8 @@
 	input[type="button"],
 	.button {
 		transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-		background-color: #3ba666;
+		background-color: #EEEEEE;
+  		color: #333333;
 		border-radius: 4px;
 		border: 0;
 		/*color: #ffffff !important;*/
@@ -245,13 +246,17 @@
 		text-align: center;
 		text-decoration: none;
 		white-space: nowrap;
+		border-top: 1px solid #CCCCCC;
+  		border-right: 1px solid #333333;
+  		border-bottom: 1px solid #333333;
+  		border-left: 1px solid #CCCCCC;
 	}
 
 		input[type="submit"]:hover,
 		input[type="reset"]:hover,
 		input[type="button"]:hover,
 		.button:hover {
-			background-color: #42b972;
+			background-color: #ffffff;
 		}
 
 		input[type="submit"]:active,
@@ -578,8 +583,8 @@
 	}
 
 	table {
-		margin: 0 0 2em 6em;
-		width: 100%;
+		margin: 0 0 2em 9em;
+		width: 75%;
 	}
 
 		table tbody tr {
@@ -588,20 +593,16 @@
 			border-right: 0;
 		}
 
-		/*	table tbody tr:nth-child(2n + 1) {
-				background-color: rgba(144, 144, 144, 0.075);
-			}*/
-
 		table td {
 			padding: 0.75em 0.75em;
 		}
 
 		table th {
 			color: #666;
-			font-size: 0.9em;
-			font-weight: 400;
+			font-size: 1em;
+			font-weight: 700;
 			padding: 0 0.75em 0.75em 0.75em;
-			text-align: left;
+			text-align: center;
 		}
 
 		table thead {
@@ -617,7 +618,7 @@
 		}
 
 			table.alt tbody tr td {
-				border: solid 1px rgba(144, 144, 144, 0.25);
+				border: solid 2px rgba(144, 144, 144, 0.25);
 				border-left-width: 0;
 				border-top-width: 0;
 			}
@@ -628,6 +629,10 @@
 
 			table.alt tbody tr:first-child td {
 				border-top-width: 1px;
+			}
+			
+			table.alt tbody tr:nth-child(2n + 1) {
+				background-color: rgba(144, 144, 144, 0.075);
 			}
 
 			table.alt thead {

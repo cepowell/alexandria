@@ -4,12 +4,14 @@
     %p
   %section#one.wrapper.style1.align-center
     .container
-      %table{:style => "width = 100%"}
+      %table
         %tbody
           %tr
             %td
+            .button
               =link_to 'New Collection', root_path
             %td
+            .button
               =link_to 'New Document', new_document_path
   %section#two.wrapper.style2.align-center
     .container
@@ -26,7 +28,8 @@
           .row
             %section.feature.6u{:class => "12u$(small)"}
               %img.image.fit{:alt => "", :src => "/assets/pic02.jpg"}/
-              %table.table-wrapper.alt#documents
+              .table-wrapper
+              %table.alt#documents
                 %thead
                   %tr
                     %th Document Name
