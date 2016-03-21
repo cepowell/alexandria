@@ -2,15 +2,11 @@
 
 %h3 #{@document.name}
 
-.table-wrapper
-%table.alt
-  %thead
-    %tr
-      %th Title
-      %th Body
-  %tbody
-    %td=@document.name
-    %td=@document.body
+
+.trix_content
+  #{@document.body}
+  /element.editor.getDocument()
+
     
 %br
 = link_to 'Edit info ', edit_document_path(@document)

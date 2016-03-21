@@ -1,19 +1,11 @@
 %h3 Create New Document
 
-
-= form_tag documents_path, :method => :post do |f|
+= form_tag documents_path, :method => :post do
   
-  = label :document, :name, 'Title'
-  %p
+  = label :document, :name, 'Title: '
   = text_field :document, :name
   %p
-  =label :document, :body, 'Body of Text'
-  %p
-  = text_area :document, :body, :rows => 8, :cols => 100
-  %p
-  %form
-    %input{:id => "body", :type => "hidden", :name => "content"}
-    %trix-editor{:input => "body"}
+  = hidden_field_tag :body
+  %trix-editor{:input => "body", :placeholder => "Your text goes here... Happy writing!"}
   %p
   = submit_tag 'Save Changes'
-  %p
