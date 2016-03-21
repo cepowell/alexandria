@@ -5,28 +5,29 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
-  /%body.landing
-  %header#header    
-    .container
-    %h1
-      %a Project Alexandria
-    %nav#nav
-      %ul
-        %li
-          %a
-          =link_to "Home", root_path
-        %li
-          %a{:href => "#"} Browse
-        %li
-          %a{:href => "#"} Profile
-  = yield        
-  %footer#footer
-    .container
-      %ul.copyright
-        %li © Project Alexandria. All rights reserved.
-        %li
-          Design:
-          %a{:href => "http://templated.co"} TEMPLATED
-        %li
-          Images:
-          %a{:href => "http://unsplash.com"} Unsplash
+  %body
+    #header    
+      .container
+      %h1
+        %a Project Alexandria
+      %nav#nav
+        %ul
+          %li
+            %a
+            =link_to "Home", root_path
+          %li
+            %a{:href => "#"} Browse
+          %li
+            %a{:href => "#"} Profile
+    #content
+      = yield
+    #footer
+      .container
+        %ul.copyright
+          %li © Project Alexandria. All rights reserved.
+          %li
+            Design:
+            %a{:href => "http://templated.co"} TEMPLATED
+          %li
+            Images:
+            %a{:href => "http://unsplash.com"} Unsplash
