@@ -13,9 +13,12 @@
 #
 
 class Document < ActiveRecord::Base
-  attr_accessible :name, :body
-  # has_attached_file :document, :default_url => "/images/:style/missing-document"  #default page for non-existing document
+  attr_accessible :name
+  has_attached_file :document
+  do_not_validate_attachment_file_type :document
+  #, :default_url => "/images/:style/missing-document"  #default page for non-existing document
   # validates_attachment_content_type :doc, :content_type => /\Afile\/.*\Z/
   belongs_to :users
   belongs_to :collections
+  
 end

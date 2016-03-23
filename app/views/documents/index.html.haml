@@ -9,7 +9,8 @@
   %tbody
     - @documents.each do |document|
       %tr
-        %td= document.name 
+        %td= document.name
+        %td= document.document
         %td= link_to "More about #{document.name}", document_path(document)
         
     -# add to end of index.html.haml

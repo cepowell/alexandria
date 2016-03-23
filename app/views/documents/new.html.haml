@@ -5,8 +5,13 @@
   = label :document, :name, 'Title: '
   = text_field :document, :name
   %p
+<<<<<<< HEAD
   /input id=document_body, type=hidden
-  = hidden_field :document, :body
-  %trix-editor{:input => "document_body", :placeholder => "Your text goes here... Happy writing!"}
+  /= hidden_field :document, :body
+  /%trix-editor{:input => "document_body", :placeholder => "Your text goes here... Happy writing!"}
+=======
+  = hidden_field :document, "content"
+  %trix-editor{:input => "document_content", :placeholder => "Your text goes here... Happy writing!"}
+>>>>>>> 7c637dcc97f3165a1faab9f689da033c5be01fda
   %p
   = submit_tag 'Save Changes'

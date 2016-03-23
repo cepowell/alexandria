@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322002612) do
+ActiveRecord::Schema.define(version: 20160322002251) do
 
   create_table "collections", force: :cascade do |t|
     t.integer  "users_id"
@@ -28,9 +28,17 @@ ActiveRecord::Schema.define(version: 20160322002612) do
     t.integer  "collections_id"
     t.string   "name"
     t.boolean  "isPublished"
-    t.text     "body"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.string   "doc_file_name"
+    t.string   "doc_content_type"
+    t.integer  "doc_file_size"
+    t.datetime "doc_updated_at"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.string   "body"
+    t.string   "document_file_name"
+    t.string   "document_content_type"
+    t.integer  "document_file_size"
+    t.datetime "document_updated_at"
   end
 
   add_index "documents", ["collections_id"], name: "index_documents_on_collections_id"

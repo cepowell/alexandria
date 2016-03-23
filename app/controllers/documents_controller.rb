@@ -6,24 +6,32 @@ class DocumentsController < ApplicationController
   def show
     id = params[:id]
     @document = Document.find(id)
+    @file = Paperclip.io_adapters.for(@document.document).read
   end
   
   def new
+    
   end
   
   def create
-    #render plain: params.inspect
-    @document = Document.new(params[:document])
+    @document = Document.create(params[:document])
+    #raise params[:document]
+    curFile = File.new(@document.name, "w")
+    @document.document = curFile
+    curFile.close 
     @document.save
-    #raise params[:title]
-    #curFile = File.new("test file", "w")
-    #curFile.write("test body").save
-    #curFile.close 
-    redirect_to @document
+    file = File.open(@document.document.path, "w")
+    file.write params[:document][:content]
+    file.close
+    redirect_to root_path
   end
   
   def update
     @document = Document.find params[:id]
+    #raise @document
+    file = File.open(@document.document.path, "w")
+    file.write params[:document][:content]
+    file.close
     if @document.update_attributes(params[:document])
       redirect_to document_path(@document)
     #curFile = File.open(params[:name]+".txt")
@@ -34,6 +42,8 @@ class DocumentsController < ApplicationController
   
   def edit
     @document = Document.find params[:id]
+    @curFile = Paperclip.io_adapters.for(@document.document).read
+    #raise @curFile
   end
   
   def destroy
