@@ -13,6 +13,6 @@
 #
 
 class User < ActiveRecord::Base
-    has_many :documents, as :users
-    has_many :collections, as: :users
+    has_many :documents, :as => :user
+    has_many :collections, :as => :user
 end
