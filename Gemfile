@@ -11,7 +11,6 @@ gem 'rails'
 
 gem 'trix'
 
-gem 'paperclip'
 
 
 group :development, :test do
