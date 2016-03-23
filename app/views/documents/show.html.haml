@@ -2,12 +2,11 @@
 
 %h3 #{@document.name}
 
+.trix-content
+    != @file
 
-.trix_content
-  #{@document.body}
-  /element.editor.getDocument()
 
-    
+   
 %br
 = link_to 'Edit info ', edit_document_path(@document)
 %br
