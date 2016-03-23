@@ -4,7 +4,6 @@ class CreateCollections < ActiveRecord::Migration
       t.references :users, index: true, foreign_key: true
       t.boolean :isPublished
       t.string :name
-
       t.timestamps null: false
     end
   end
