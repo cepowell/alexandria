@@ -9,16 +9,17 @@ class DocumentsController < ApplicationController
   end
   
   def new
-  
   end
   
   def create
-    @document = Document.create!(params[:document])
+    #render plain: params.inspect
+    @document = Document.new(params[:document])
+    @document.save
     #raise params[:title]
     #curFile = File.new("test file", "w")
     #curFile.write("test body").save
     #curFile.close 
-    redirect_to root_path
+    redirect_to @document
   end
   
   def update

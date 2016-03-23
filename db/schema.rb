@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160311035934) do
+ActiveRecord::Schema.define(version: 20160322002612) do
 
   create_table "collections", force: :cascade do |t|
     t.integer  "users_id"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20160311035934) do
     t.integer  "collections_id"
     t.string   "name"
     t.boolean  "isPublished"
-    t.string   "body"
+    t.text     "body"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
