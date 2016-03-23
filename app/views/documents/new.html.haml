@@ -5,6 +5,7 @@
   = label :document, :name, 'Title: '
   = text_field :document, :name
   %p
+  /input id=document_body, type=hidden
   = hidden_field :document, :body
   %trix-editor{:input => "document_body", :placeholder => "Your text goes here... Happy writing!"}
   %p
