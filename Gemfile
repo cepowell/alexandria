@@ -7,9 +7,7 @@ gem 'protected_attributes'
 gem 'annotate', '~>2.4.1.beta'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 
-gem 'rails'
 
-gem 'trix'
 
 
 
