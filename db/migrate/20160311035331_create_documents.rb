@@ -1,8 +1,8 @@
 class CreateDocuments < ActiveRecord::Migration
   def up
     create_table :documents do |t|
-      t.references :users, index: true, foreign_key: true
-      t.references :collections, index: true, foreign_key: true
+      t.references :user, index: true, foreign_key: true
+      t.references :collection, index: true, foreign_key: true
       t.string :name
       t.boolean :isPublished
       t.string :body
