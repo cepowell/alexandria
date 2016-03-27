@@ -1,0 +1,8 @@
+%h3 Create New Collection
+
+= form_tag collections_path, :method => :post do
+  
+  = label :collection, :name, 'Title: '
+  = text_field :collection, :name
+  %p
+  = submit_tag 'Save Changes'

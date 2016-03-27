@@ -9,7 +9,7 @@
           %tr
             %td
             .button
-              =link_to 'New Collection', root_path
+              =link_to 'New Collection', new_collection_path
             %td
             .button
               =link_to 'New Document', new_document_path
@@ -20,25 +20,34 @@
       .row
         %section.feature.6u{:class => "12u$(small)"}
           %img.image.fit{:alt => "", :src => "/assets/pic02.jpg"}/
-          %p
-            Collection table here.
-        .container
-          %header
-            %h2 My Documents
-          .row
-            %section.feature.6u{:class => "12u$(small)"}
-              %img.image.fit{:alt => "", :src => "/assets/pic02.jpg"}/
-              .table-wrapper
-              %table.alt#documents
-                %thead
-                  %tr
-                    %th Document Name
-                    %th Document Details
-                %tbody
-                  - @documents.each do |document|
-                    %tr
-                      %td= document.name 
-                      %td= link_to "More about #{document.name}", document_path(document)
+          .table-wrapper
+          %table.alt#collections
+            %thead
+              %tr
+                %th Collection Name
+                %th Collection Details
+            %tbody
+              - @collections.each do |collection|
+                %tr
+                  %td= collection.name 
+                  %td= link_to "More about #{collection.name}", collection_path(collection)
+    .container
+      %header
+        %h2 My Documents
+      .row
+        %section.feature.6u{:class => "12u$(small)"}
+          %img.image.fit{:alt => "", :src => "/assets/pic02.jpg"}/
+          .table-wrapper
+          %table.alt#documents
+            %thead
+              %tr
+                %th Document Name
+                %th Document Details
+            %tbody
+              - @documents.each do |document|
+                %tr
+                  %td= document.name 
+                  %td= link_to "More about #{document.name}", document_path(document)
 
 
   

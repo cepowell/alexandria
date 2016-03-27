@@ -1,0 +1,8 @@
+%h3 #{@collection.name}
+
+%br
+= link_to 'Edit info ', edit_collection_path(@collection)
+%br
+= link_to ' Return home ', root_path
+%br
+= link_to ' Delete ', collection_path(@collection), :method => :delete
