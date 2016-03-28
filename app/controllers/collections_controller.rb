@@ -11,6 +11,7 @@ class CollectionsController < ApplicationController
     def show
         id = params[:id]
         @collection = Collection.find(id)
+        @documents_with_id = Document.where(collections_id: params[:id])
     end
 
     def edit
@@ -32,5 +33,11 @@ class CollectionsController < ApplicationController
         @collection = Collection.find(params[:id])
         @collection.destroy
         redirect_to root_path
+    end
+    
+    def createDocument
+        @collection = Collection.find(params[:id])
+        @document = Document.create(params[:document])
+        @document.collections_id = params[:id]
     end
 end

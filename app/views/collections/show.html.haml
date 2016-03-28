@@ -1,7 +1,18 @@
 %h3 #{@collection.name}
 
+%table.alt#documents_with_id
+    %thead
+        %tr
+            %th Document Name
+            %th Document Details
+    %tbody
+        - @documents_with_id.each do |document|
+            %tr
+                %td= document.name 
+                %td= link_to "More about #{document.name}", document_path(document)
+
 %br
-= link_to 'Edit info ', edit_collection_path(@collection)
+= link_to 'Edit collection name ', edit_collection_path(@collection)
 %br
 = link_to ' Return home ', root_path
 %br

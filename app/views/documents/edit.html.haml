@@ -9,4 +9,6 @@
   = hidden_field :document, "content", value: @curFile
   %trix-editor{:input => "document_content", :placeholder => "Your text goes here... Happy writing!"}
   %p
+  = collection_select(:document, :collections_id, Collection.all || [], :id, :name, include_blank: true, prompt: true)
+  %p
   = submit_tag 'Save Changes'

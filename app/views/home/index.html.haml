@@ -44,7 +44,7 @@
                 %th Document Name
                 %th Document Details
             %tbody
-              - @documents.each do |document|
+              - @docs_without_collection.each do |document|
                 %tr
                   %td= document.name 
                   %td= link_to "More about #{document.name}", document_path(document)

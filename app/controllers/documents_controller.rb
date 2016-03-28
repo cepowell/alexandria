@@ -15,6 +15,7 @@ class DocumentsController < ApplicationController
   
   def create
     @document = Document.create(params[:document])
+    #@document.collections_id = 1
     #raise params[:document]
     curFile = File.new(@document.name, "w")
     @document.document = curFile
