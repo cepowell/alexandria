@@ -19,6 +19,6 @@ class Document < ActiveRecord::Base
   #, :default_url => "/images/:style/missing-document"  #default page for non-existing document
   # validates_attachment_content_type :doc, :content_type => /\Afile\/.*\Z/
   belongs_to :users
-  belongs_to :collections
+  has_many :collections
   
 end

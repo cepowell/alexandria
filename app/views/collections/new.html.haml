@@ -4,5 +4,15 @@
   
   = label :collection, :name, 'Title: '
   = text_field :collection, :name
-  %p
+  %table.alt#freeDocs
+    %thead Remove Documents
+      %tr
+        %th Document Name
+        %th Select
+    %tbody
+      Include:
+      - @curDocs.each do |document|
+        %tr
+          %td= document.name 
+          %td= check_box_tag "documents[#{document.id}]"
   = submit_tag 'Save Changes'
