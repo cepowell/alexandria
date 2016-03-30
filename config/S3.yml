@@ -1,4 +1,0 @@
-development:
-    S3_BUCKET_NAME: 'alexandriaproject2016'
-    AWS_ACCESS_KEY_ID: 'AKIAJ5ESMMRCIUVMYKDA'
-    AWS_SECRET_ACCESS_KEY: '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'
