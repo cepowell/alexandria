@@ -11,7 +11,7 @@ class CollectionsController < ApplicationController
     def show
         id = params[:id]
         @collection = Collection.find(id)
-        @documents_with_id = Document.where(collections_id: params[:id])
+        @curDocs = Document.where(collections_id: params[:id])
     end
 
     def edit

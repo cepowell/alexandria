@@ -6,7 +6,7 @@
             %th Document Name
             %th Document Details
     %tbody
-        - @documents_with_id.each do |document|
+        - @curDocs.each do |document|
             %tr
                 %td= document.name 
                 %td= link_to "More about #{document.name}", document_path(document)

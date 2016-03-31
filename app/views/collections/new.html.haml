@@ -5,13 +5,12 @@
   = label :collection, :name, 'Title: '
   = text_field :collection, :name
   %table.alt#freeDocs
-    %thead Remove Documents
+    %thead
       %tr
         %th Document Name
         %th Select
     %tbody
-      Include:
-      - @curDocs.each do |document|
+      - @freeDocs.each do |document|
         %tr
           %td= document.name 
           %td= check_box_tag "documents[#{document.id}]"
