@@ -3,6 +3,13 @@ source 'https://rubygems.org'
 gem 'haml'
 gem 'trix'
 
+# Use ActiveModel has_secure_password
+gem 'bcrypt', '~>3.1.7'
+
+# Gems for 3rd Party Auth
+gem 'omniauth-twitter'
+gem 'omniauth-facebook' # need authentication gem for each secondary source we want to authenticate from
+
 # Gems for storing files
 gem 'paperclip'
 gem 'aws-sdk', '< 2.0'
@@ -10,8 +17,6 @@ gem 'aws-sdk', '< 2.0'
 gem 'protected_attributes'
 gem 'annotate', '~>2.4.1.beta'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-
-
 
 
 
@@ -45,8 +50,6 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -61,4 +64,5 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  
 end

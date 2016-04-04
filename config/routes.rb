@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'home#index'
+  
   #adding document routes
   resources :documents
   #get 'documents/'
@@ -7,11 +9,31 @@ Rails.application.routes.draw do
   #adding collection routes
   resources :collections
 
+  #adding sign up/log in routes
+  resources :users
+  
+  # routes to sign up and log in
+  get 'signup' => 'users#new'
+  post 'signup' => 'users#create'
+  get 'login' => 'sessions#new', :as => 'loginuser'
+  post 'login' => 'sessions#find', :as=> 'finduser'
+  
+  #for 3rd party authentication, creates a new session for this user, attached to login
+  get  'auth/:provider/callback' => 'sessions#create',:as => 'login'
+  # gives the option to log out
+  get 'logout' => 'sessions#destroy'
+  # post 'logout' => 'sessions#destroy' -- this was initially in the pastebin
+  # if the authentication doesn't go through
+  get  'auth/failure' => 'sessions#failure'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
+
+  # testing to see if this will fix an error I am 
+  # getting with before_filter
+
   # You can have the root of your site routed with "root"
-  root 'home#index'
+  
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
