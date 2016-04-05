@@ -1,0 +1,15 @@
+%h2 Log in form  
+
+= link_to 'Login with Twitter', '/auth/twitter'
+%br
+%br
+= form_tag loginuser_path(@user), :method => :post do
+	= label :user, :email, 'Email'
+	= text_field :user, :email
+
+	= label :user, :password, 'Password'
+	= password_field :user, :password 
+	
+	= submit_tag 'Log in'
+
+

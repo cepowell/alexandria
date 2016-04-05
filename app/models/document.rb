@@ -2,14 +2,22 @@
 #
 # Table name: documents
 #
-#  id             :integer         not null, primary key
-#  users_id       :integer
-#  collections_id :integer
-#  name           :string
-#  filePath       :string
-#  isPublished    :boolean
-#  created_at     :datetime        not null
-#  updated_at     :datetime        not null
+#  id                    :integer         not null, primary key
+#  users_id              :integer
+#  collections_id        :integer
+#  name                  :string
+#  isPublished           :boolean
+#  doc_file_name         :string
+#  doc_content_type      :string
+#  doc_file_size         :integer
+#  doc_updated_at        :datetime
+#  created_at            :datetime        not null
+#  updated_at            :datetime        not null
+#  body                  :string
+#  document_file_name    :string
+#  document_content_type :string
+#  document_file_size    :integer
+#  document_updated_at   :datetime
 #
 
 class Document < ActiveRecord::Base
