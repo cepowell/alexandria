@@ -4,6 +4,8 @@
 
   = label :document, :name, 'Title: '
   = text_field :document, :name
+  = "Publication status (checked indicates published): "
+  = check_box_tag "is_Published", @document.isPublished, @document.isPublished
   %p
   /input id=body, type=hidden, value=body
   = hidden_field :document, "content", value: @curFile
