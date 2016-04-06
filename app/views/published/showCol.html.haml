@@ -1,0 +1,14 @@
+%h3 #{@collection.name}
+%table.alt#documents_with_id
+    %thead
+        %tr
+            %th Document Name
+            %th Document Details
+    %tbody
+        - @docsInCol.each do |document|
+            %tr
+                %td= document.name 
+                %td= link_to "More about #{document.name}", pub_col_doc_path(document)
+
+%br
+= link_to ' Return to published works ', published_path

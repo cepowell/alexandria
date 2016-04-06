@@ -4,6 +4,8 @@
 
   = label :document, :name, 'Title: '
   = text_field :document, :name
+  = "Publication status (checked indicates published): "
+  = check_box_tag "is_Published", @document.isPublished, @document.isPublished
   %p
   input id=body, type=hidden, value=body
   = hidden_field :document, "content", value: @curFile
@@ -11,5 +13,7 @@
   /input id=document_body, type=hidden
   /= hidden_field :document, :body
   /%trix-editor{:input => "document_body", :placeholder => "Your text goes here... Happy writing!"}
+  %p
+  = collection_select(:document, :collections_id, Collection.all || [], :id, :name, include_blank: true, prompt: true)
   %p
   = submit_tag 'Save Changes'

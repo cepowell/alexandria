@@ -1,0 +1,19 @@
+%h2 Join Alexandria!  
+
+= form_tag signup_path(@user), :method => :post do
+	= label :user, :first, 'First Name'
+	= text_field :user, :first
+	%br
+	= label :user, :last, 'Last Name'
+	= text_field :user, :last
+	%br
+	= label :user, :email, 'Email'
+	= text_field :user, :email
+	%br
+	= label :user, :password, 'Password'
+	= password_field :user, :password 
+	%br
+	= label :user, :password_confirmation, 'Password Confirmation'
+	= password_field :user, :password_confirmation
+	%br
+	= submit_tag 'Sign up'

@@ -1,0 +1,19 @@
+%h3 #{@collection.name}
+Publication Status: #{@pubStatus}
+%table.alt#documents_with_id
+    %thead
+        %tr
+            %th Document Name
+            %th Document Details
+    %tbody
+        - @curDocs.each do |document|
+            %tr
+                %td= document.name 
+                %td= link_to "More about #{document.name}", document_path(document)
+
+%br
+= link_to 'Edit collection ', edit_collection_path(@collection)
+%br
+= link_to ' Return home ', root_path
+%br
+= link_to ' Delete ', collection_path(@collection), :method => :delete

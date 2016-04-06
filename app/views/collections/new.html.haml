@@ -1,0 +1,17 @@
+%h3 Create New Collection
+
+= form_tag collections_path, :method => :post do
+  
+  = label :collection, :name, 'Title: '
+  = text_field :collection, :name
+  %table.alt#freeDocs
+    %thead
+      %tr
+        %th Document Name
+        %th Select
+    %tbody
+      - @freeDocs.each do |document|
+        %tr
+          %td= document.name 
+          %td= check_box_tag "documents[#{document.id}]"
+  = submit_tag 'Save Changes'
