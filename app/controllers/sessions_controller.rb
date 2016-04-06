@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
      # creates a user from the 3rd party information we got
     user=User.find_by_provider_and_uid(["provider"], auth["uid"]) || 
     User.create_with_omniauth(auth)
-    session[:user_id] = user.uid
+    session[:user_id] = user.id
     redirect_to root_path
   end
   
@@ -41,7 +41,7 @@ class SessionsController < ApplicationController
     # user.authenticate calls bcrypt to check if email and passwrd match a db entry
     if user && user.authenticate(params[:user][:password])
       # after we log in a user, we set their id, because we need it for before_filter
-      session[:user_id] = user.uid
+      session[:user_id] = user.id
       
       session[:provider] = nil   
       flash[:notice] = "logged in!" 

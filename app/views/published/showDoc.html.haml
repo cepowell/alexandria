@@ -1,0 +1,12 @@
+-# in app/views/published/showDoc.html.haml
+
+%h3 #{@document.name}
+%br
+
+.trix-content
+    != @file
+
+
+   
+%br
+= link_to ' Return to published works ', published_path
