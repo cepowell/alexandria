@@ -23,10 +23,12 @@ class CollectionsController < ApplicationController
     def create
         #raise params[:documents]
         @collection = Collection.create(params[:collection])
-        params[:documents].keys.each do |id|
-            doc = Document.find(id)
-            doc.collections_id = @collection.id
-            doc.save
+        if params[:documents].present?
+            params[:documents].keys.each do |id|
+                doc = Document.find(id)
+                doc.collections_id = @collection.id
+                doc.save
+            end
         end
         
         #associate files with collections
