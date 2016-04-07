@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160404012452) do
+ActiveRecord::Schema.define(version: 20160406230904) do
 
   create_table "collections", force: :cascade do |t|
     t.integer  "users_id"
@@ -28,13 +28,9 @@ ActiveRecord::Schema.define(version: 20160404012452) do
     t.integer  "collections_id"
     t.string   "name"
     t.boolean  "isPublished"
-    t.string   "doc_file_name"
-    t.string   "doc_content_type"
-    t.integer  "doc_file_size"
-    t.datetime "doc_updated_at"
+    t.text     "body"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
-    t.string   "body"
     t.string   "document_file_name"
     t.string   "document_content_type"
     t.integer  "document_file_size"
@@ -56,7 +52,6 @@ ActiveRecord::Schema.define(version: 20160404012452) do
   add_index "permissions", ["users_id"], name: "index_permissions_on_users_id"
 
   create_table "users", force: :cascade do |t|
-    t.integer  "uid",             null: false
     t.string   "first"
     t.string   "last"
     t.string   "email"
