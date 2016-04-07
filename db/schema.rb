@@ -13,8 +13,15 @@
 
 ActiveRecord::Schema.define(version: 20160404012452) do
 
-# Could not dump table "collections" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "collections", force: :cascade do |t|
+    t.integer  "users_id"
+    t.boolean  "isPublished"
+    t.string   "name"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "collections", ["users_id"], name: "index_collections_on_users_id"
 
   create_table "documents", force: :cascade do |t|
     t.integer  "users_id"

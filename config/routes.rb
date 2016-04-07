@@ -8,6 +8,11 @@ Rails.application.routes.draw do
   
   #adding collection routes
   resources :collections
+  
+  get 'published' => 'published#index'
+  get 'published/doc/:id' => 'published#showDoc', :as => :pub_doc
+  get 'published/col/:id' => 'published#showCol', :as => :pub_col
+  get 'published/col/:id/doc/:id' => 'published#showDocInCol', :as => :pub_col_doc
 
   #adding sign up/log in routes
   resources :users

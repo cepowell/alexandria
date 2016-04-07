@@ -8,6 +8,7 @@
       %th Doc Location
       %th Doc Id
       %th Collection ID
+      %th Publication Status
       %th More
   %tbody
     - @documents.each do |document|
@@ -15,7 +16,8 @@
         %td= document.name
         %td= document.document
         %td= document.id
-        %td=document.collections_id
+        %td= document.collections_id
+        %td= document.isPublished
         %td= link_to "More about #{document.name}", document_path(document)
         
     -# add to end of index.html.haml

@@ -4,13 +4,14 @@
 
   = label :collection, :name, 'Title: '
   = text_field :collection, :name
+  = "Publication status (checked indicates published): "
+  = check_box_tag "is_Published", @collection.isPublished, @collection.isPublished
   %table.alt#freeDocs
     %thead
       %tr
         %th Document Name
         %th Select Documents
     %tbody
-      Include:
       - @curDocs.each do |document|
         %tr
           %td= document.name 

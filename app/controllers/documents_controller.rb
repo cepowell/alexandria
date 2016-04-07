@@ -6,6 +6,11 @@ class DocumentsController < ApplicationController
   def show
     id = params[:id]
     @document = Document.find(id)
+    if @document.isPublished
+      @pubStatus = "Published"
+    else
+      @pubStatus = "Private"
+    end
     s3_file_path ="documents/documents/000/000/#{format("%03d", @document.id)}/original/#{@document.document_file_name}"
     s3 = AWS::S3.new(:access_key_id => ENV['AWS_ACCESS_KEY_ID'], :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'])
     bucket = s3.buckets[ENV['S3_BUCKET_NAME']]
@@ -35,6 +40,11 @@ class DocumentsController < ApplicationController
   
   def update
     @document = Document.find params[:id]
+    if !params.has_key?("is_Published")
+      @document.isPublished = false
+    else 
+      @document.isPublished = true
+    end
     content = params[:document][:content]
     s3_file_path ="documents/documents/000/000/#{format("%03d", @document.id)}/original/#{@document.document_file_name}"
     s3 = AWS::S3.new(:access_key_id => ENV['AWS_ACCESS_KEY_ID'], :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'])

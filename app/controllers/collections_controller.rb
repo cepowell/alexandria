@@ -11,6 +11,11 @@ class CollectionsController < ApplicationController
     def show
         id = params[:id]
         @collection = Collection.find(id)
+        if @collection.isPublished
+          @pubStatus = "Published"
+        else
+          @pubStatus = "Private"
+        end
         @curDocs = Document.where(collections_id: params[:id])
     end
 
@@ -40,6 +45,11 @@ class CollectionsController < ApplicationController
     def update
         #raise params[:documents].keys.to_s
         @collection = Collection.find params[:id]
+        if !params.has_key?("is_Published")
+          @collection.isPublished = false
+        else 
+          @collection.isPublished = true
+        end
         @collection.update_attributes(params[:collection])
         Document.where(collections_id: params[:id]).each do |doc|
             doc.collections_id = nil
@@ -50,7 +60,7 @@ class CollectionsController < ApplicationController
             doc.collections_id = params[:id]
             doc.save
         end
-        redirect_to root_path
+        redirect_to collection_path(@collection)
     end
 
     def destroy
