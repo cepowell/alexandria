@@ -29,7 +29,7 @@ class DocumentsController < ApplicationController
     #raise params[:document]
     curFile = File.new(@document.name, "w")
     @document.document = curFile
-    curFile.close 
+    #curFile.close 
     @document.save
     s3_file_path ="documents/documents/000/000/#{format("%03d", @document.id)}/original/#{@document.document_file_name}"
     s3 = AWS::S3.new(:access_key_id => ENV['AWS_ACCESS_KEY_ID'], :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'])
