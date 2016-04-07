@@ -43,11 +43,13 @@
               %tr
                 %th Document Name
                 %th Document Details
+                %th Delete Documents
             %tbody
               - @documents.each do |document|
                 %tr
                   %td= document.name 
                   %td= link_to "More about #{document.name}", document_path(document)
+                  %td= link_to "Delete", document_path(document), :method => :delete
 
 
   

@@ -28,9 +28,13 @@ ActiveRecord::Schema.define(version: 20160406230904) do
     t.integer  "collections_id"
     t.string   "name"
     t.boolean  "isPublished"
-    t.text     "body"
+    t.string   "doc_file_name"
+    t.string   "doc_content_type"
+    t.integer  "doc_file_size"
+    t.datetime "doc_updated_at"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+    t.text     "body"
     t.string   "document_file_name"
     t.string   "document_content_type"
     t.integer  "document_file_size"
