@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :collections
   
   post 'new_comment' => 'comments#new'
+  post 'new_col_comment' => 'comments#newCol'
   
   get 'published' => 'published#index'
   get 'published/doc/:id' => 'published#showDoc', :as => :pub_doc

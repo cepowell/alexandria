@@ -11,4 +11,25 @@
                 %td= link_to "More about #{document.title}", pub_col_doc_path(document)
 
 %br
+%br
+%h4 Comments
+%br
+%table.alt#documents
+    %thead
+        %tr
+            %th Name
+            %th Comment
+    %tbody
+        - @comments.each do |comment|
+            %tr
+                %td= @map[comment.id] 
+                %td= comment.body
+
+%br
+%br
 = link_to ' Return to published works ', published_path
+%br
+- if !@notSignedIn
+    = render :partial => "new_col_comment", :locals => {:user => @user, :collection => @collection}
+- if @notSignedIn
+    =link_to "Login in to Comment", '/login'

@@ -26,6 +26,15 @@ class PublishedController < ApplicationController
     def showCol
         @collection = Collection.find(params[:id])
         @docsInCol = Document.where(collection_id: params[:id])
+        @comments = Comment.where(collection_id: @collection.id)
+        @map = Hash.new
+        @comments.each do |comment|
+            @map[comment.id] = User.find(comment.user_id).first
+        end
+        @notSignedIn = session[:user_id].nil?
+        if !@notSignedIn
+            @user = User.find(session[:user_id])
+        end
     end
        
     def showDocInCol
