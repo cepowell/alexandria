@@ -2,12 +2,12 @@
 #
 # Table name: permissions
 #
-#  id           :integer         not null, primary key
-#  users_id     :integer
-#  documents_id :integer
-#  access       :string
-#  created_at   :datetime        not null
-#  updated_at   :datetime        not null
+#  id          :integer         not null, primary key
+#  user_id     :integer
+#  document_id :integer
+#  access      :string
+#  created_at  :datetime        not null
+#  updated_at  :datetime        not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

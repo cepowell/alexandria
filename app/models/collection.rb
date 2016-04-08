@@ -3,7 +3,7 @@
 # Table name: collections
 #
 #  id          :integer         not null, primary key
-#  users_id    :integer
+#  user_id     :integer
 #  isPublished :boolean
 #  name        :string
 #  created_at  :datetime        not null
