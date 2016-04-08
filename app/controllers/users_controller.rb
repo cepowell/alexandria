@@ -4,11 +4,26 @@ class UsersController < ApplicationController
 # without 3rd party auth
 
     skip_before_filter :set_current_user #:authorize 
-
     
     def new
-		@user = User.new
+        @user = User.new
 	end 
+	
+	def update
+	    @user = User.find(session[:user_id])
+	    if @user.update_attributes(params[:user])
+            redirect_to user_path(@user)
+        end
+	end
+	
+	def show
+		@current_user = true
+	    @user = User.find(session[:user_id])
+	end
+	
+	def edit
+	    @user = User.find(session[:user_id])
+	end
 	
     def create
 

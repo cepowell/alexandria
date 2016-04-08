@@ -17,14 +17,14 @@
             %tr
                 %td= @map[comment.id] 
                 %td= comment.body
-%br
+%p
 - if !@notSignedIn
     = render :partial => "new_comment", :locals => {:user => @user, :document => @document}
 - if @notSignedIn
-    =link_to "Login in to Comment", '/login'
+    =link_to "Log in to comment", '/login'
 
 
    
 %br
 %br
-= link_to ' Return to published works ', published_path
+= link_to 'Return to published works ', published_path

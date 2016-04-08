@@ -13,23 +13,28 @@
         %a Project Alexandria
       %nav#nav
         %ul
-          %li
-            %a
-            =link_to "Home", root_path
-          %li
-            %a
-            =link_to "Browse", published_path
-          %li
-            %a
-            =link_to "Profile", '#'
-          -# this bit is currently not working
-          - if @current_user
+          -if @current_user
             %li
-            =link_to "Logout", '/logout'
-          - elsif not @user
+              %a
+              =link_to "Browse", published_path
             %li
+              %a
+              =link_to "My Work", home_index_path
+            %li 
+              %a
+              =link_to "My Profile", user_path(User.find(session[:user_id]))
+            %li 
+              %a  
+              =link_to "Logout", '/logout'
+          -elsif not @current_user
+            %li 
+              %a
+              =link_to "Browse", published_path
+            %li 
+              %a
               =link_to "Sign Up", '/signup'
             %li
+              %a
               =link_to "Login", '/login'
     #content
       = yield

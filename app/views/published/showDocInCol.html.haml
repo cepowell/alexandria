@@ -21,14 +21,15 @@
                 %td= @map[comment.id] 
                 %td= comment.body
 
+%p
+- if !@notSignedIn
+    = render :partial => "new_comment", :locals => {:user => @user, :document => @document}
+- if @notSignedIn
+    =link_to "Login in to comment", '/login'
+
 %br
 %br
 = link_to ' Return to collection', pub_col_path(@collection.id)
 %br
 %br
 = link_to ' Return to published works ', published_path
-%br
-- if !@notSignedIn
-    = render :partial => "new_comment", :locals => {:user => @user, :document => @document}
-- if @notSignedIn
-    =link_to "Login in to Comment", '/login'

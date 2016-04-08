@@ -1,8 +1,10 @@
 
 = form_tag new_comment_path, :method => :post do
-  = user.first
-  = label :comment, :body, 'Comment: '
+  = label :comment, :body, 'Leave a comment on this document: '
+  %br 
+  %br
   = text_area :comment, :body
   = hidden_field :comment, :document_id, value: document.id
   = hidden_field :comment, :user_id, value: user.id
+  %br
   = submit_tag 'Publish Comment'

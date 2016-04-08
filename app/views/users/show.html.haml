@@ -1,1 +1,13 @@
-%h2 My Profile
+%h2 Profile
+
+%br
+%h3 Name
+#{@user.first} #{@user.last}
+
+%p
+
+%h3 Email
+#{@user.email}
+
+%p
+=link_to 'Edit Profile', edit_user_path(@user)
