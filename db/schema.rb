@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160311035934) do
+ActiveRecord::Schema.define(version: 20160408040031) do
 
   create_table "collections", force: :cascade do |t|
     t.integer  "user_id"
@@ -22,6 +22,20 @@ ActiveRecord::Schema.define(version: 20160311035934) do
   end
 
   add_index "collections", ["user_id"], name: "index_collections_on_user_id"
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "document_id"
+    t.integer  "collection_id"
+    t.text     "body"
+    t.integer  "flagged"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "comments", ["collection_id"], name: "index_comments_on_collection_id"
+  add_index "comments", ["document_id"], name: "index_comments_on_document_id"
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "documents", force: :cascade do |t|
     t.integer  "user_id"

@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   #adding collection routes
   resources :collections
   
+  post 'new_comment' => 'comments#new'
+  
   get 'published' => 'published#index'
   get 'published/doc/:id' => 'published#showDoc', :as => :pub_doc
   get 'published/col/:id' => 'published#showCol', :as => :pub_col

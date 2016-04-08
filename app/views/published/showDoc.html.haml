@@ -5,6 +5,24 @@
 
 .trix-content
     != @file
+%br
+%h4 Comments
+%br
+%table.alt#documents
+    %thead
+        %tr
+            %th Name
+            %th Comment
+    %tbody
+        - @comments.each do |comment|
+            %tr
+                %td= @map[comment.id] 
+                %td= comment.body
+%br
+- if !@notSignedIn
+    = render :partial => "new_comment", :locals => {:user => @user, :document => @document}
+- if @notSignedIn
+    =link_to "Login in to Comment", '/login'
 
 
    
