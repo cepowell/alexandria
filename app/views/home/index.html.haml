@@ -19,14 +19,14 @@
         %h2 My Collections
       .row
         %section.feature.6u{:class => "12u$(small)"}
-          %img.image.fit{:alt => "", :src => "/assets/pic02.jpg"}/
+          %img.image.fit{:alt => "", :src => "/assets/library2.jpg"}/
           .table-wrapper
           %table.alt#collections
             %thead
               %tr
                 %th Collection Name
                 %th Collection Details
-                %th Delete Collections
+                %th Delete?
             %tbody
               - @collections.each do |collection|
                 %tr
@@ -38,14 +38,14 @@
         %h2 My Documents
       .row
         %section.feature.6u{:class => "12u$(small)"}
-          %img.image.fit{:alt => "", :src => "/assets/pic02.jpg"}/
+          %img.image.fit{:alt => "", :src => "/assets/library2.jpg"}/
           .table-wrapper
           %table.alt#documents
             %thead
               %tr
                 %th Document Name
                 %th Document Details
-                %th Delete Documents
+                %th Delete?
             %tbody
               - @documents.each do |document|
                 %tr
