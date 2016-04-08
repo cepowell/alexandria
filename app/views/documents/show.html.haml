@@ -2,17 +2,20 @@
 
 %h3 #{@document.title}
 
-Publication Status: #{@pubStatus}
-%br
+<em>Publication Status: #{@pubStatus}</em>
+
+%p
 
 .trix-content
     != @file
 
 
    
-%br
+%p
 = link_to 'Edit info ', edit_document_path(@document)
 %br
+%br
 = link_to ' Return home ', root_path
+%br
 %br
 = link_to ' Delete ', document_path(@document), :method => :delete

@@ -1,6 +1,7 @@
 !!!
 %html
   %head
+    %link{:href => "https://fonts.googleapis.com/css?family=Playfair+Display|Alice|Roboto|Roboto+Condensed|Alegreya|Lora", :rel => "stylesheet", :type => "text/css"}/
     %title Alexandria
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
@@ -16,9 +17,11 @@
             %a
             =link_to "Home", root_path
           %li
-            %a{:href => "#"} Browse
+            %a
+            =link_to "Browse", published_path
           %li
-            %a{:href => "#"} Profile
+            %a
+            =link_to "Profile", '#'
           -# this bit is currently not working
           - if @current_user
             %li
@@ -35,7 +38,7 @@
         %ul.copyright
           %li © Project Alexandria. All rights reserved.
           %li
-            Design:
+            Design Inspiration:
             %a{:href => "http://templated.co"} TEMPLATED
           %li
             Images:

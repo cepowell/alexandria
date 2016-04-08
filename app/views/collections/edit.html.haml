@@ -1,16 +1,17 @@
-%h3 Edit Collection Name
+%h3 Edit Collection
 
 = form_tag collection_path(@collection), :method => :put do
 
   = label :collection, :name, 'Title: '
   = text_field :collection, :name
-  = "Publication status (checked indicates published): "
+  %br
+  = "Published? "
   = check_box_tag "is_Published", @collection.isPublished, @collection.isPublished
   %table.alt#freeDocs
     %thead
       %tr
         %th Document Name
-        %th Select Documents
+        %th Selected?
     %tbody
       - @curDocs.each do |document|
         %tr

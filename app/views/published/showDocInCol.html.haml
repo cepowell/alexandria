@@ -1,15 +1,15 @@
 -# in app/views/published/showDoc.html.haml
 
 %h2 #{@collection.name}
-%br
 %h3 #{@document.title}
 %br
 
 .trix-content
     != @file
 
-
 %br
-= link_to ' Return to Collection', pub_col_path(@collection.id)
+%br
+= link_to ' Return to collection', pub_col_path(@collection.id)
+%br
 %br
 = link_to ' Return to published works ', published_path

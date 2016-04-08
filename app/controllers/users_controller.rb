@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 # without 3rd party auth
 
     skip_before_filter :set_current_user #:authorize 
+
     
     def new
 		@user = User.new
