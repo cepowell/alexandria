@@ -5,7 +5,7 @@ class CollectionsController < ApplicationController
     end
     
     def new
-        @freeDocs = Document.where(collections_id: nil)
+        @freeDocs = Document.where(collection_id: nil)
     end
     
     def show
@@ -16,22 +16,23 @@ class CollectionsController < ApplicationController
         else
           @pubStatus = "Private"
         end
-        @curDocs = Document.where(collections_id: params[:id])
+        @curDocs = Document.where(collection_id: params[:id])
     end
 
     def edit
         @collection = Collection.find params[:id]
-        @curDocs = Document.where(collections_id: params[:id])
-        @freeDocs = Document.where(collections_id: nil)
+        @curDocs = Document.where(collection_id: params[:id])
+        @freeDocs = Document.where(collection_id: nil)
     end
     
     def create
-        #raise params[:documents]
+        #raise params.inspect1
         @collection = Collection.create(params[:collection])
+        @collection.save
         if params[:documents].present?
             params[:documents].keys.each do |id|
                 doc = Document.find(id)
-                doc.collections_id = @collection.id
+                doc.collection_id = @collection.id
                 doc.save
             end
         end
@@ -51,14 +52,16 @@ class CollectionsController < ApplicationController
           @collection.isPublished = true
         end
         @collection.update_attributes(params[:collection])
-        Document.where(collections_id: params[:id]).each do |doc|
-            doc.collections_id = nil
+        Document.where(collection_id: params[:id]).each do |doc|
+            doc.collection_id = nil
             doc.save
         end
-        params[:documents].keys.each do |id|
-            doc = Document.find(id)
-            doc.collections_id = params[:id]
-            doc.save
+        if params[:documents].present?
+            params[:documents].keys.each do |id|
+                doc = Document.find(id)
+                doc.collection_id = params[:id]
+                doc.save
+            end
         end
         redirect_to collection_path(@collection)
     end
@@ -69,9 +72,4 @@ class CollectionsController < ApplicationController
         redirect_to root_path
     end
     
-    def createDocument
-        @collection = Collection.find(params[:id])
-        @document = Document.create(params[:document])
-        @document.collections_id = params[:id]
-    end
 end

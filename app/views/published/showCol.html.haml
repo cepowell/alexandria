@@ -7,8 +7,8 @@
     %tbody
         - @docsInCol.each do |document|
             %tr
-                %td= document.name 
-                %td= link_to "More about #{document.name}", pub_col_doc_path(document)
+                %td= document.title 
+                %td= link_to "More about #{document.title}", pub_col_doc_path(document)
 
 %br
 = link_to ' Return to published works ', published_path

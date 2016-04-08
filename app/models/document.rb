@@ -16,12 +16,12 @@
 #
 
 class Document < ActiveRecord::Base
-  attr_accessible :name, :collections_id
-  has_attached_file :document
-  do_not_validate_attachment_file_type :document
+  attr_accessible :title, :collection_id
+  has_attached_file :content
+  do_not_validate_attachment_file_type :content
   #, :default_url => "/images/:style/missing-document"  #default page for non-existing document
   # validates_attachment_content_type :doc, :content_type => /\Afile\/.*\Z/
-  belongs_to :users
-  has_many :collections
+  belongs_to :user
+  belongs_to :collection
   
 end

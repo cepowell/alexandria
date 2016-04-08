@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   # user shouldn't have to be logged in before logging in!
-  skip_before_filter :set_current_user, #:authorize
+  skip_before_filter :set_current_user #:authorize
   
   # creates a new user with the 3rd party auth via Twitter
   def create

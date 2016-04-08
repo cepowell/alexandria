@@ -26,11 +26,13 @@
               %tr
                 %th Collection Name
                 %th Collection Details
+                %th Delete Collections
             %tbody
               - @collections.each do |collection|
                 %tr
                   %td= collection.name 
                   %td= link_to "More about #{collection.name}", collection_path(collection)
+                  %td= link_to "Delete", collection_path(collection), :method => :delete
     .container
       %header
         %h2 My Documents
@@ -47,8 +49,8 @@
             %tbody
               - @documents.each do |document|
                 %tr
-                  %td= document.name 
-                  %td= link_to "More about #{document.name}", document_path(document)
+                  %td= document.title 
+                  %td= link_to "More about #{document.title}", document_path(document)
                   %td= link_to "Delete", document_path(document), :method => :delete
 
 

@@ -8,8 +8,8 @@ Publication Status: #{@pubStatus}
     %tbody
         - @curDocs.each do |document|
             %tr
-                %td= document.name 
-                %td= link_to "More about #{document.name}", document_path(document)
+                %td= document.title 
+                %td= link_to "More about #{document.title}", document_path(document)
 
 %br
 = link_to 'Edit collection ', edit_collection_path(@collection)

@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 # for users who want to sign up for access to site 
 # without 3rd party auth
 
-    skip_before_filter :set_current_user, #:authorize 
+    skip_before_filter :set_current_user #:authorize 
     
     def new
 		@user = User.new

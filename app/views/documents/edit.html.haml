@@ -2,8 +2,8 @@
 
 = form_tag document_path(@document), :method => :put do
 
-  = label :document, :name, 'Title: '
-  = text_field :document, :name
+  = label :document, :title, 'Title: '
+  = text_field :document, :title
   = "Publication status (checked indicates published): "
   = check_box_tag "is_Published", @document.isPublished, @document.isPublished
   %p

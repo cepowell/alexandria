@@ -32,5 +32,5 @@
             %tbody
               - @publishedDocs.each do |document|
                 %tr
-                  %td= document.name 
-                  %td= link_to "More about #{document.name}", pub_doc_path(document)
+                  %td= document.title 
+                  %td= link_to "More about #{document.title}", pub_doc_path(document)

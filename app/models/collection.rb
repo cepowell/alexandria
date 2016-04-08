@@ -12,6 +12,6 @@
 
 class Collection < ActiveRecord::Base
     attr_accessible :name
-    belongs_to :users
+    belongs_to :user
     has_many :documents
 end

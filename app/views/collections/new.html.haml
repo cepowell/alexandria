@@ -12,6 +12,6 @@
     %tbody
       - @freeDocs.each do |document|
         %tr
-          %td= document.name 
+          %td= document.title 
           %td= check_box_tag "documents[#{document.id}]"
   = submit_tag 'Save Changes'
