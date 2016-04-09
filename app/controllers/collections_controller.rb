@@ -22,8 +22,9 @@ class CollectionsController < ApplicationController
 
     def edit
         @collection = Collection.find params[:id]
-        @curDocs = Document.where(collection_id: params[:id], user_id: session[:user_id])
-        @freeDocs = Document.where(collection_id: nil)
+        @curDocs = Document.where(collection_id: params[:id])
+        @freeDocs = Document.where(collection_id: nil, user_id: session[:user_id])
+
     end
     
     def create
