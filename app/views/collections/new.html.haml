@@ -2,8 +2,10 @@
 
 = form_tag collections_path, :method => :post do
   
-  = label :collection, :name, 'Title: '
+  = 'Title:'
   = text_field :collection, :name
+  = "Publish Collection "
+  = check_box_tag :isPublished
   %br
   %table.alt#freeDocs
     %thead

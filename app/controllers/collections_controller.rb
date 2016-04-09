@@ -22,14 +22,17 @@ class CollectionsController < ApplicationController
 
     def edit
         @collection = Collection.find params[:id]
-        @curDocs = Document.where(collection_id: params[:id])
+        @curDocs = Document.where(collection_id: params[:id], user_id: session[:user_id])
         @freeDocs = Document.where(collection_id: nil)
     end
     
     def create
-        #raise params.inspect1
+        #raise params.inspect
         @collection = Collection.create(params[:collection])
         @collection.user_id = session[:user_id]
+        if params.has_key?("isPublished")
+          @collection.isPublished = true
+        end
         @collection.save
         if params[:documents].present?
             params[:documents].keys.each do |id|
@@ -71,7 +74,7 @@ class CollectionsController < ApplicationController
     def destroy
         @collection = Collection.find(params[:id])
         @collection.destroy
-        redirect_to root_path
+        redirect_to home_index_path
     end
     
 end
