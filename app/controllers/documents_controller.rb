@@ -1,7 +1,7 @@
 class DocumentsController < ApplicationController
   def index
     @documents = Document.all
-    @mydocs = Document.where(user_id = session[:user_id])
+    @mydocs = Document.where(session[:user_id])
   end
   
   def show

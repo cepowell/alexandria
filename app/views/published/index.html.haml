@@ -13,11 +13,17 @@
           %table.alt#collections
             %thead
               %tr
+                %th Author
                 %th Collection Name
                 %th Collection Details
             %tbody
               - @publishedCols.each do |collection|
                 %tr
+                  %td
+                    - if (collection.user_id)
+                      = User.find(collection.user_id).first
+                    - else
+                      = "No author"
                   %td= collection.name 
                   %td= link_to "More about #{collection.name}", pub_col_path(collection)
     .container
@@ -30,10 +36,16 @@
           %table.alt#documents
             %thead
               %tr
+                /%th Author
                 %th Document Name
                 %th Document Details
             %tbody
               - @publishedDocs.each do |document|
                 %tr
+                  %td
+                    - if (document.user_id)
+                      = User.find(document.user_id).first
+                    - else
+                      = "No author"
                   %td= document.title 
                   %td= link_to "More about #{document.title}", pub_doc_path(document)
