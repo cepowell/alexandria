@@ -21,7 +21,7 @@
                 %tr
                   %td
                     - if (collection.user_id)
-                      = User.find(collection.user_id).first
+                      = User.find(collection.user_id).first + " " + User.find(collection.user_id).last
                     - else
                       = "No author"
                   %td= collection.name 
@@ -44,7 +44,7 @@
                 %tr
                   %td
                     - if (document.user_id)
-                      = User.find(document.user_id).first
+                      = User.find(document.user_id).first + " " + User.find(document.user_id).last
                     - else
                       = "No author"
                   %td= document.title 
