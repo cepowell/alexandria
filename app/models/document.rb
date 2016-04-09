@@ -16,7 +16,7 @@
 #
 
 class Document < ActiveRecord::Base
-  attr_accessible :title, :collection_id
+  attr_accessible :title, :collection_id, :user_id
   has_attached_file :content
   do_not_validate_attachment_file_type :content
   #, :default_url => "/images/:style/missing-document"  #default page for non-existing document

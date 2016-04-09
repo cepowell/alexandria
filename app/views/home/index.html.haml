@@ -25,7 +25,7 @@
                 %th Collection Details
                 %th Delete?
             %tbody
-              - @collections.each do |collection|
+              - @mycols.each do |collection|
                 %tr
                   %td= collection.name 
                   %td= link_to "More about #{collection.name}", collection_path(collection)
@@ -44,7 +44,7 @@
                 %th Document Details
                 %th Delete?
             %tbody
-              - @documents.each do |document|
+              - @mydocs.each do |document|
                 %tr
                   %td= document.title 
                   %td= link_to "More about #{document.title}", document_path(document)

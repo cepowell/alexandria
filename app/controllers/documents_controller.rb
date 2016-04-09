@@ -1,6 +1,7 @@
 class DocumentsController < ApplicationController
   def index
     @documents = Document.all
+    @mydocs = Document.where(user_id = session[:user_id])
   end
   
   def show
@@ -24,6 +25,7 @@ class DocumentsController < ApplicationController
   
   def create
     @document = Document.create(params[:document])
+    @document.user_id = session[:user_id]
     content = params[:document][:content]
     #raise params[:document]
     curFile = File.new(@document.title, "w")
@@ -74,7 +76,7 @@ class DocumentsController < ApplicationController
     @document = Document.find(params[:id])
     @document.destroy
     flash[:notice] = "Document '#{@document.title}' deleted."
-    redirect_to root_path  
+    redirect_to home_index_path
   end
   
   

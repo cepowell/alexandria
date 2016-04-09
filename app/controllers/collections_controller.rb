@@ -2,10 +2,11 @@ class CollectionsController < ApplicationController
     
     def index
         @collections = Collection.all
+        @mycols = Collection.where(user_id: session[:user_id])
     end
     
     def new
-        @freeDocs = Document.where(collection_id: nil)
+        @freeDocs = Document.where(collection_id: nil, user_id: session[:user_id])
     end
     
     def show
@@ -28,6 +29,7 @@ class CollectionsController < ApplicationController
     def create
         #raise params.inspect1
         @collection = Collection.create(params[:collection])
+        @collection.user_id = session[:user_id]
         @collection.save
         if params[:documents].present?
             params[:documents].keys.each do |id|
@@ -40,7 +42,7 @@ class CollectionsController < ApplicationController
         #associate files with collections
         
         
-        redirect_to root_path
+        redirect_to home_index_path
     end
     
     def update
