@@ -25,7 +25,7 @@ class PublishedController < ApplicationController
     
     def showCol
         @collection = Collection.find(params[:id])
-        @docsInCol = Document.where(collection_id: params[:id])
+        @docsInCol = Document.where(collection_id: params[:id], isPublished: true)
         @comments = Comment.where(collection_id: @collection.id)
         @map = Hash.new
         @comments.each do |comment|
