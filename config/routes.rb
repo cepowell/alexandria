@@ -3,8 +3,12 @@ Rails.application.routes.draw do
   
   #adding document routes
   resources :documents
+  get 'shared' => 'documents#shared', :as => :shared
+  post 'documents/:id/share' => 'documents#share', :as => :share_document
+  delete 'documents/share/:id' => 'documents#removeShare', :as => :remove_share
   #get 'documents/'
   get 'home/index'
+ 
   
   #adding collection routes
   resources :collections

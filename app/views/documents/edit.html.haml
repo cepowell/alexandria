@@ -1,13 +1,15 @@
 %h3 Edit Document
 
 = form_tag document_path(@document), :method => :put do
-
-  = label :document, :title, 'Title: '
-  = text_field :document, :title
-  %br
-  = "Published? "
-  = check_box_tag "is_Published", @document.isPublished, @document.isPublished
-  %br
+  - if session[:user_id]==@document.user_id  
+    = label :document, :title, 'Title: '
+    = text_field :document, :title
+    %br
+    = "Published? "
+    = check_box_tag "is_Published", @document.isPublished, @document.isPublished
+    %br
+  - else 
+    %h4 #{@document.title}
   %br
   /input id=body, type=hidden, value=body
   = hidden_field :document, "content", value: @curFile
@@ -16,8 +18,10 @@
   /= hidden_field :document, :body
   /%trix-editor{:input => "document_body", :placeholder => "Your text goes here... Happy writing!"}
   %p
-  Select a collection for this document (optional).
-  %BR
-  = collection_select(:document, :collection_id, Collection.all || [], :id, :name, prompt: true)
+  - if session[:user_id]==@document.user_id 
+    Select a collection for this document (optional).
+    %BR
+    = collection_select(:document, :collection_id, Collection.all || [], :id, :name, prompt: true)
   %p
   = submit_tag 'Save Changes'
+  

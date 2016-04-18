@@ -1,0 +1,30 @@
+%body.landing
+  %section#two.wrapper.style2.align-center
+    - if !@documents.empty?
+      .container
+        %header
+          %h2 Shared Documents
+        .row
+          %section.feature.6u{:class => "12u$(small)"}
+            %img.image.fit{:alt => "", :src => "/assets/library2.jpg"}/
+            .table-wrapper
+            %table.alt#documents
+              %thead
+                %tr
+                  %th Author
+                  %th Document Name
+                  %th Access level
+                  %th Document Details
+              %tbody
+                - @documents.each do |document|
+                  %tr
+                    %td= @map[document.id]
+                    %td= document.title
+                    %td= @map2[document.id]
+                    %td= link_to "More about #{document.title}", document_path(document)
+    - else
+      .container 
+        %header
+          %h2 No Shared Documents
+            
+

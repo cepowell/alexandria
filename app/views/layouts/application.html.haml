@@ -22,6 +22,9 @@
               =link_to "My Work", home_index_path
             %li 
               %a
+              =link_to "Shared With Me", shared_path
+            %li 
+              %a
               =link_to "My Profile", user_path(User.find(session[:user_id]))
             %li 
               %a  

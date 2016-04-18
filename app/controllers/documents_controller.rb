@@ -5,8 +5,21 @@ class DocumentsController < ApplicationController
   end
   
   def show
-    id = params[:id]
-    @document = Document.find(id)
+    sessionId = session[:user_id]
+    @document = Document.find(params[:id])
+    @comments = getComments(@document)
+    @map = commentsMap(@comments)
+    if sessionId == @document.user_id
+      @perm = "owner"
+    else
+      @perm = Permission.where(user_id: session[:user_id], document_id: @document.id).first.access
+    end
+    @curPermissions = Permission.where(document_id: params[:id])
+    @mapAccess = Hash.new
+    @curPermissions.each do |curPer|
+      @mapAccess[curPer.id] = User.find(curPer.user_id).email
+    end
+    #raise @mapAccess.to_s
     if @document.isPublished
       @pubStatus = "Published"
     else
@@ -17,10 +30,6 @@ class DocumentsController < ApplicationController
     bucket = s3.buckets[ENV['S3_BUCKET_NAME']]
     @file = bucket.objects["#{s3_file_path}"].read
     #@file = Paperclip.io_adapters.for(@document.content).read
-  end
-  
-  def new
-    
   end
   
   def create
@@ -81,6 +90,53 @@ class DocumentsController < ApplicationController
     flash[:notice] = "Document '#{@document.title}' deleted."
     redirect_to home_index_path
   end
+  #All sharing methods
   
   
+  def share
+    #raise params.inspect
+    #raise params[:permissions].inspect
+    begin
+      if params[:permission][:name].include? '@'
+        user = User.find_by(email: params[:permission][:name])
+      else
+        user = User.find_by(penName: params[:permission][:name])
+      end
+    rescue 
+      flash[:notice] = 'That does not appear to be a user'
+      redirect_to request.referrer
+    else
+      perm = Permission.where(user_id: user.id, document_id: params[:id]).first
+      if perm!=nil
+        perm.access=params[:permission][:access]
+      else
+          perm = Permission.create(user_id: user.id, document_id: params[:id], access: params[:permission][:access])
+      end
+      perm.save
+      flash[:notice] = 'You successfully shared this document with #{user.email}'
+      redirect_to request.referrer
+    end
+  end
+  
+  def removeShare
+    #raise params.inspect
+    permission = Permission.find(params[:id])
+    permission.destroy
+    redirect_to request.referrer
+  end
+  
+  def shared
+    docIds = []
+    perms = Permission.where(user_id: session[:user_id])
+    perms.each do |perm| 
+      docIds.push(perm.document_id)
+    end
+    @user = User.find(session[:user_id])
+    @documents = Document.where(id: docIds)
+    @map = commentsMap(@documents)
+    @map2 = Hash.new
+    perms.each do |perm|
+      @map2[perm.document_id] = perm.access
+    end
+  end
 end

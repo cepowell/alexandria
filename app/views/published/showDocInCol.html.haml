@@ -8,18 +8,7 @@
     != @file
 
 %br
-%h4 Comments
-%br
-%table.alt#documents
-    %thead
-        %tr
-            %th Name
-            %th Comment
-    %tbody
-        - @comments.each do |comment|
-            %tr
-                %td= @map[comment.id] 
-                %td= comment.body
+= render :partial => "sharedPartials/comments", :locals => {:comments => @comments, :map => @map}
 
 %p
 - if !@notSignedIn

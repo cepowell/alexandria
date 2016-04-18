@@ -12,11 +12,10 @@ class PublishedController < ApplicationController
         s3 = AWS::S3.new(:access_key_id => ENV['AWS_ACCESS_KEY_ID'], :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'])
         bucket = s3.buckets[ENV['S3_BUCKET_NAME']]
         @file = bucket.objects["#{s3_file_path}"].read
-        @comments = Comment.where(document_id: @document.id)
-        @map = Hash.new
-        @comments.each do |comment|
-            @map[comment.id] = User.find(comment.user_id).first
-        end
+        
+        @comments = getComments(@document)
+        @map = commentsMap(@comments)
+        
         @notSignedIn = session[:user_id].nil?
         if !@notSignedIn
             @user = User.find(session[:user_id])
@@ -44,11 +43,8 @@ class PublishedController < ApplicationController
         s3 = AWS::S3.new(:access_key_id => ENV['AWS_ACCESS_KEY_ID'], :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'])
         bucket = s3.buckets[ENV['S3_BUCKET_NAME']]
         @file = bucket.objects["#{s3_file_path}"].read
-        @comments = Comment.where(document_id: @document.id)
-        @map = Hash.new
-        @comments.each do |comment|
-            @map[comment.id] = User.find(comment.user_id).first
-        end
+        @comments = getComments(@document)
+        @map = commentsMap(@comments)
         @notSignedIn = session[:user_id].nil?
         if !@notSignedIn
             @user = User.find(session[:user_id])

@@ -3,19 +3,63 @@
 %h3 #{@document.title}
 
 <em>Publication Status: #{@pubStatus}</em>
+%br
+
 
 %p
+
+
 
 .trix-content
     != @file
+%br
+%br
 
+- if @perm=="owner" 
+    %p
+    = link_to 'Edit info ', edit_document_path(@document)
+    %br
+    %br
+    = link_to ' Return to My Work ', home_index_path
+    %br
+    %br
+    = link_to ' Delete ', document_path(@document), :method => :delete
+    %br
+    %br
+    = form_tag share_document_path(@document), :method => :post do
+        = 'Share with: '
+        = text_field :permission, :name 
+        = 'Access Level'
+        = select(:permission, :access, {"Revise" => "revise", "Comment" => "comment"})
+        = submit_tag 'Share'
+    %br
+    - if !@curPermissions.empty?
+        %h4 Shared With...
+        %br
+        %table.alt#documents
+            %thead
+                %tr
+                    %th Pen Name
+                    %th Access Level
+                    %th Revoke Permissions
+            %tbody
+                - @curPermissions.each do |curPer|
+                    %tr
+                        %td= @mapAccess[curPer.id]
+                        %td= curPer.access
+                        %td= link_to 'Remove Access', remove_share_path(curPer.id), :method => :delete
 
-   
-%p
-= link_to 'Edit info ', edit_document_path(@document)
+- else 
+    - if @perm=="revise"
+        %p
+        = link_to 'Edit info ', edit_document_path(@document)
+        %br
+    = link_to ' Return to Shared Documents ', shared_path
+    %br
+    %br
+
+- if !@comments.empty?
+    = render :partial => "sharedPartials/comments", :locals => {:comments => @comments, :map => @map}
+    %br
+= render :partial => "published/new_comment", :locals => {:document => @document}    
 %br
-%br
-= link_to ' Return to My Work ', home_index_path
-%br
-%br
-= link_to ' Delete ', document_path(@document), :method => :delete

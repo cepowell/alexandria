@@ -5,6 +5,6 @@
   %br
   = text_area :comment, :body
   = hidden_field :comment, :document_id, value: document.id
-  = hidden_field :comment, :user_id, value: user.id
+  = hidden_field :comment, :user_id, value: session[:user_id]
   %br
   = submit_tag 'Publish Comment'
