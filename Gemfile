@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# for tagging
+gem 'acts-as-taggable-on'
+
 gem 'haml'
 gem 'trix'
 

@@ -16,4 +16,8 @@
    
 %br
 %br
+= label :document, :tag_list, "Tags: "
+- @document.tag_list.each do |tag|
+    #{tag},
+%BR
 = link_to 'Return to published works ', published_path

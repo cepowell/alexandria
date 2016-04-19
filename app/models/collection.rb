@@ -11,7 +11,9 @@
 #
 
 class Collection < ActiveRecord::Base
-    attr_accessible :name, :user_id
+    attr_accessible :name, :user_id, :tag_list
     belongs_to :user
     has_many :documents
+    acts_as_taggable
+    
 end

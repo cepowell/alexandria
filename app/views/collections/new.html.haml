@@ -17,4 +17,8 @@
         %tr
           %td= document.title 
           %td= check_box_tag "documents[#{document.id}]"
+  = label :collection, :tag_list, "Tags: "
+  = text_field :collection, :tag_list, { :placeholder => "Tags separated by commas" }
+  %BR
+  %BR
   = submit_tag 'Save Changes'

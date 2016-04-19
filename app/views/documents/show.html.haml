@@ -14,7 +14,10 @@
     != @file
 %br
 %br
-
+= label :document, :tag_list, "Tags: "
+- @document.tag_list.each do |tag|
+    #{tag},
+%BR
 - if @perm=="owner" 
     %p
     = link_to 'Edit info ', edit_document_path(@document)

@@ -3,6 +3,11 @@
     %h2
     %p
   %section#one.wrapper.style2.align-center
+    = form_tag published_path, :method => :get, id: "search-form" do
+      =label :name, "Search Published Documents"
+      %BR
+      = text_field :search, params[:search], { :placeholder => "Tags separated by commas" }
+      =submit_tag "Search"
     .container
       %header
         %h2 Published Collections

@@ -14,4 +14,8 @@
   %BR
   = collection_select(:document, :collection_id, Collection.all || [], :id, :name, prompt: true) 
   %p
+  = label :document, :tag_list,  'Tags: '
+  = text_field :document, :tag_list, { :placeholder => "Tags separated by commas" }
+  %BR
+  %BR
   = submit_tag 'Save Changes'

@@ -20,7 +20,10 @@ Rails.application.routes.draw do
   get 'published/doc/:id' => 'published#showDoc', :as => :pub_doc
   get 'published/col/:id' => 'published#showCol', :as => :pub_col
   get 'published/col/:id/doc/:id' => 'published#showDocInCol', :as => :pub_col_doc
-
+  
+  # for searching through tags
+  # post 'published/search' => 'published#search', :as => :pub_search
+  
   #adding sign up/log in routes
   resources :users
   

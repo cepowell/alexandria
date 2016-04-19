@@ -1,8 +1,16 @@
 class PublishedController < ApplicationController
     def index
         #raise params.inspect
-        @publishedDocs = Document.where(isPublished: true)
-        @publishedCols = Collection.where(isPublished: true)
+        # this is supposed to indicate whether the user has asked to search any tags
+        # if so, then only the collections and documents with those tags should appear
+        # else all published materials should appear
+        if params[:search]
+            @publishedCols = Collection.tagged_with(params[:search]).where(isPublished: true)
+            @publishedDocs = Document.tagged_with(params[:search]).where(isPublished: true)
+        else
+            @publishedDocs = Document.where(isPublished: true)
+            @publishedCols = Collection.where(isPublished: true)
+        end
     end
     
     def showDoc
@@ -50,4 +58,13 @@ class PublishedController < ApplicationController
             @user = User.find(session[:user_id])
         end
     end
+    
+    def search
+        @publishedDocs = Document.where(isPublished: true)
+        @publishedCols = Collection.where(isPublished: true)
+        
+        @collectionResults = @publishedCols.tagged_with(:search)
+        @documentResults = @publishedDocs.tagged_with(:search)
+    end
+    
 end

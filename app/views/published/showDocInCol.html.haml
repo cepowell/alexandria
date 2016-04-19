@@ -18,6 +18,11 @@
 
 %br
 %br
+= label :document, :tag_list, "Tags: "
+- @document.tag_list.each do |tag|
+    #{tag},
+%BR
+%BR
 = link_to ' Return to collection', pub_col_path(@collection.id)
 %br
 %br

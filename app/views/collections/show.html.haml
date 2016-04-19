@@ -14,6 +14,10 @@
                 %td= link_to "More about #{document.title}", document_path(document)
 
 %br
+= label :collection, :tag_list, "Tags: "
+- @collection.tag_list.each do |tag|
+    #{tag},
+%BR
 = link_to 'Edit collection ', edit_collection_path(@collection)
 %br
 %br
