@@ -681,4 +681,9 @@
 				border-top: 0;
 			}
 
-	
+	.notice {
+		color: yellow;
+		text-align: center;
+		font-family: 'Roboto Condensed', sans-serif; 
+		text-transform: uppercase;
+	}

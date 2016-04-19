@@ -6,8 +6,14 @@
 
 %p
 
-%h3 Email
-#{@user.email}
+%h3 Pen Name
+#{@user.penname}
 
 %p
-=link_to 'Edit Profile', edit_user_path(@user)
+
+%h3 About #{@user.penname}
+#{@user.description}
+
+%p
+-if @user.id == @current.id
+    =link_to 'Edit Profile', edit_user_path(@user)

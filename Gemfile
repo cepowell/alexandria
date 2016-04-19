@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'haml'
 gem 'trix'
+gem 'impressionist'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~>3.1.7'

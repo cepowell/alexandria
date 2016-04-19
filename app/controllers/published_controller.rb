@@ -1,4 +1,5 @@
 class PublishedController < ApplicationController
+    
     def index
         #raise params.inspect
         @publishedDocs = Document.where(isPublished: true)
@@ -8,6 +9,7 @@ class PublishedController < ApplicationController
     def showDoc
         #raise session[:user_id].nil?.inspect
         @document = Document.find(params[:id])
+        impressionist(@document)
         s3_file_path ="documents/documents/000/000/#{format("%03d", @document.id)}/original/#{@document.content_file_name}"
         s3 = AWS::S3.new(:access_key_id => ENV['AWS_ACCESS_KEY_ID'], :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'])
         bucket = s3.buckets[ENV['S3_BUCKET_NAME']]

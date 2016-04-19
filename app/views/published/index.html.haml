@@ -21,7 +21,7 @@
                 %tr
                   %td
                     - if (collection.user_id)
-                      = User.find(collection.user_id).first + " " + User.find(collection.user_id).last
+                      = link_to "#{User.find(collection.user_id).penname}", pub_col_path(collection)
                     - else
                       = "No author"
                   %td= collection.name 
@@ -36,7 +36,7 @@
           %table.alt#documents
             %thead
               %tr
-                /%th Author
+                %th Author
                 %th Document Name
                 %th Document Details
             %tbody
@@ -44,7 +44,7 @@
                 %tr
                   %td
                     - if (document.user_id)
-                      = User.find(document.user_id).first + " " + User.find(document.user_id).last
+                      = link_to "#{User.find(document.user_id).penname}", user_path(User.find(document.user_id))
                     - else
                       = "No author"
                   %td= document.title 

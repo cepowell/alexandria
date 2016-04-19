@@ -12,6 +12,10 @@ class CollectionsController < ApplicationController
     def show
         id = params[:id]
         @collection = Collection.find(id)
+        unless session[:user_id] == @collection.user_id
+            flash[:notice] = "You don't have access to this collection!"
+            redirect_to root_path
+        end
         if @collection.isPublished
           @pubStatus = "Published"
         else
@@ -75,6 +79,7 @@ class CollectionsController < ApplicationController
     def destroy
         @collection = Collection.find(params[:id])
         @collection.destroy
+        flash[:notice] = "Collection '#{@collection.name}' deleted."
         redirect_to home_index_path
     end
     

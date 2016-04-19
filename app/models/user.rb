@@ -19,9 +19,12 @@ class User < ActiveRecord::Base
     has_many :collections, :as => :user
     has_secure_password
     
-    attr_accessible :first, :last, :email, :password, :password_digests
+    attr_accessible :first, :last, :email, :password, :password_digests, :penname, :description
     
-    validates_uniqueness_of :email
+    validates :email, presence: true, uniqueness: true
+    validates :penname, presence: true, uniqueness: true
+    
+    #validates_uniqueness_of :email, :penname
     
     # def self.create_with_omniauth(auth)
     # create! do |user|
