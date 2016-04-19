@@ -1,4 +1,5 @@
 class DocumentsController < ApplicationController
+  
   def index
     @documents = Document.all
     @mydocs = Document.where(session[:user_id])
@@ -17,7 +18,7 @@ class DocumentsController < ApplicationController
     @curPermissions = Permission.where(document_id: params[:id])
     @mapAccess = Hash.new
     @curPermissions.each do |curPer|
-      @mapAccess[curPer.id] = User.find(curPer.user_id).email
+      @mapAccess[curPer.id] = User.find(curPer.user_id).penname
     end
     #raise @mapAccess.to_s
     if @document.isPublished
@@ -103,7 +104,7 @@ class DocumentsController < ApplicationController
         user = User.find_by(penName: params[:permission][:name])
       end
     rescue 
-      flash[:notice] = 'That does not appear to be a user'
+      flash[:notice] = 'Invalid user.'
       redirect_to request.referrer
     else
       perm = Permission.where(user_id: user.id, document_id: params[:id]).first
@@ -113,7 +114,7 @@ class DocumentsController < ApplicationController
           perm = Permission.create(user_id: user.id, document_id: params[:id], access: params[:permission][:access])
       end
       perm.save
-      flash[:notice] = 'You successfully shared this document with #{user.email}'
+      flash[:notice] = 'You successfully shared this document with #{user.penname}'
       redirect_to request.referrer
     end
   end

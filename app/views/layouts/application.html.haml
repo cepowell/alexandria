@@ -7,7 +7,9 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    #header    
+    #header
+      -if flash[:notice]
+        .notice=flash[:notice]
       .container
       %h1
         %a Project Alexandria

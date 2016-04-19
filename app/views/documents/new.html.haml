@@ -4,7 +4,8 @@
   
   = label :document, :title, 'Title: '
   = text_field :document, :title
-  = "Publish Document "
+  %br
+  = "Publish? "
   = check_box_tag :isPublished
   %br
   = hidden_field :document, "content"

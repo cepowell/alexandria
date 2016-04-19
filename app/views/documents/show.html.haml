@@ -2,6 +2,7 @@
 
 %h3 #{@document.title}
 
+
 <em>Publication Status: #{@pubStatus}</em>
 %br
 
@@ -14,6 +15,8 @@
     != @file
 %br
 %br
+
+%h6 #{@document.impressionist_count} views so far!
 = label :document, :tag_list, "Tags: "
 - @document.tag_list.each do |tag|
     #{tag},
@@ -29,15 +32,20 @@
     = link_to ' Delete ', document_path(@document), :method => :delete
     %br
     %br
+    
+    %h4 <center>Share Document</center>
+    %br
     = form_tag share_document_path(@document), :method => :post do
         = 'Share with: '
         = text_field :permission, :name 
-        = 'Access Level'
+        %br
+        = 'Access level: '
         = select(:permission, :access, {"Revise" => "revise", "Comment" => "comment"})
+        %br
         = submit_tag 'Share'
     %br
     - if !@curPermissions.empty?
-        %h4 Shared With...
+        %h4 <center>Shared With...</center>
         %br
         %table.alt#documents
             %thead
@@ -57,7 +65,8 @@
         %p
         = link_to 'Edit info ', edit_document_path(@document)
         %br
-    = link_to ' Return to Shared Documents ', shared_path
+        %br
+    = link_to 'Return to shared documents ', shared_path
     %br
     %br
 

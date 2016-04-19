@@ -23,6 +23,7 @@ class Document < ActiveRecord::Base
   # validates_attachment_content_type :doc, :content_type => /\Afile\/.*\Z/
   belongs_to :user
   belongs_to :collection
+  is_impressionable
   
   acts_as_taggable
 end

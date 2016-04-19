@@ -36,7 +36,7 @@ class SessionsController < ApplicationController
     
     #raise params[:user][:email].inspect
 
-    user = User.find_by_email(params[:user][:email]) 
+    user = User.find_by_email(params[:user][:email]) || User.find_by(penname: params[:user][:penname])
 
     # user.authenticate calls bcrypt to check if email and passwrd match a db entry
     if user && user.authenticate(params[:user][:password])
@@ -44,10 +44,10 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       
       session[:provider] = nil   
-      flash[:notice] = "logged in!" 
+      flash[:notice] = "Welcome, #{user.penname}!" 
       redirect_to root_path 
     else
-      flash[:notice] = "Could not log in!" 
+      flash[:notice] = "Invalid login credentials." 
       redirect_to root_path
     end    
 
