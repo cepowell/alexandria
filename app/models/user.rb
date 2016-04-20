@@ -38,5 +38,4 @@ class User < ActiveRecord::Base
     #                                       :provider => auth[:provider],
      #                                 :uid      => auth[:uid])
     #end
-    
 end

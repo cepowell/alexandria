@@ -7,13 +7,13 @@ class UsersController < ApplicationController
     
     def new
         @user = User.new
-	end 
+    end 
 	
 	def update
-	    @user = User.find(session[:user_id])
+		@user = User.find(session[:user_id])
 	    if @user.update_attributes(params[:user])
             redirect_to user_path(@user)
-        end
+            end
 	end
 	
 	def show
