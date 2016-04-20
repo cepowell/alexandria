@@ -7,13 +7,13 @@ class UsersController < ApplicationController
     
     def new
         @user = User.new
-	end 
+    end 
 	
 	def update
 	    @user = User.find(session[:user_id])
 	    if @user.update_attributes(params[:user])
             redirect_to user_path(@user)
-        end
+    	end
 	end
 	
 	def show
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
 			flash[:notice] = "Welcome, #{@user.penname}!"
     		redirect_to home_index_path
 		else 	
-    		flash[:notice] = "That penname or email is taken!" 
+    		flash[:alert] = "That penname or email is taken!" 
             render "new"
         end
             

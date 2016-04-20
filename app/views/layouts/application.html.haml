@@ -10,6 +10,8 @@
     #header
       -if flash[:notice]
         .notice=flash[:notice]
+      -if flash[:alert]
+        .alert=flash[:alert]
       .container
       %h1
         %a Project Alexandria

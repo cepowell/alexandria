@@ -13,7 +13,7 @@ class CollectionsController < ApplicationController
         id = params[:id]
         @collection = Collection.find(id)
         unless session[:user_id] == @collection.user_id
-            flash[:notice] = "You don't have access to this collection!"
+            flash[:alert] = "You don't have access to this collection!"
             redirect_to root_path
         end
         if @collection.isPublished

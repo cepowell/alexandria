@@ -52,7 +52,7 @@
             %tbody
                 - @curPermissions.each do |curPer|
                     %tr
-                        %td= @mapAccess[curPer.id]
+                        %td= link_to "#{@mapAccess[curPer.id]}", user_path(User.find_by(penname: @mapAccess[curPer.id]).id)
                         %td= curPer.access
                         %td= link_to 'Remove Access', remove_share_path(curPer.id), :method => :delete
 
