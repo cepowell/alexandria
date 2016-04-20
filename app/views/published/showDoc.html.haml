@@ -7,12 +7,18 @@
     != @file
 %br
 = render :partial => "sharedPartials/comments", :locals => {:comments => @comments, :map => @map}
+%br
+= render :partial => "sharedPartials/likes", :locals => {:likes => @likes, :likesmap => @likesmap}
 %p
 - if !@notSignedIn
     = render :partial => "new_comment", :locals => {:user => @user, :document => @document}
 - if @notSignedIn
     =link_to "Log in to comment", '/login'
-
+%br
+- if !@notSignedIn
+    =render :partial => "new_like", :locals => {:user => @user, :document => @document}
+- if @notSignedIn
+    =link_to "Log in to like", '/login'
 
    
 %br

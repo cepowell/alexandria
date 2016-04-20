@@ -21,6 +21,18 @@ class ApplicationController < ActionController::Base
     redirect_to loginuser_path, alert: "Not Authorized" if session[:user_id].nil?
   end
   
+  def getLikes(doc)
+    return Like.where(document_id: doc.id)
+  end
+  
+  def likesMap(likes)
+    map = Hash.new
+    likes.each do |like|
+      map[like.id] = User.find(like.user_id).penname
+    end
+    return map
+  end
+  
   def getComments(doc)
     return Comment.where(document_id: doc.id)
   end

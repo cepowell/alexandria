@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   post 'new_comment' => 'comments#new'
   post 'new_col_comment' => 'comments#newCol'
   
+  post 'new_like' => 'likes#new'
+  
   get 'published' => 'published#index'
   get 'published/doc/:id' => 'published#showDoc', :as => :pub_doc
   get 'published/col/:id' => 'published#showCol', :as => :pub_col
