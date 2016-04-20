@@ -17,6 +17,8 @@ class PublishedController < ApplicationController
         
         @comments = getComments(@document)
         @map = commentsMap(@comments)
+        @likes = getLikes(@document)
+        @likesmap = likesMap(@likes)
         
         @notSignedIn = session[:user_id].nil?
         if !@notSignedIn
@@ -47,6 +49,8 @@ class PublishedController < ApplicationController
         @file = bucket.objects["#{s3_file_path}"].read
         @comments = getComments(@document)
         @map = commentsMap(@comments)
+        @likes = getLikes(@document)
+        @likesmap = likesMap(@likes)
         @notSignedIn = session[:user_id].nil?
         if !@notSignedIn
             @user = User.find(session[:user_id])

@@ -9,7 +9,9 @@ class DocumentsController < ApplicationController
     sessionId = session[:user_id]
     @document = Document.find(params[:id])
     @comments = getComments(@document)
+    @likes = getLikes(@document)
     @map = commentsMap(@comments)
+    @likesmap = likesMap(@likes)
     if sessionId == @document.user_id
       @perm = "owner"
     else

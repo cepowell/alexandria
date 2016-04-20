@@ -65,7 +65,11 @@
     = link_to 'Return to shared documents ', shared_path
     %br
     %br
-
+-if !@likes.empty?
+    =render :partial => "sharedPartials/likes", :locals => {:comments => @comments, :likesmap => @likesmap}
+    %br
+=render :partial => "published/new_like", :locals => {:document => @document}
+%br
 - if !@comments.empty?
     = render :partial => "sharedPartials/comments", :locals => {:comments => @comments, :map => @map}
     %br
