@@ -36,8 +36,17 @@ class SessionsController < ApplicationController
     
     #raise params[:user][:email].inspect
 
-    user = User.find_by_email(params[:user][:email]) || User.find_by(penname: params[:user][:penname])
-
+    #user = User.find_by_email(params[:user][:email]) || User.find_by(penname: params[:user][:penname])
+    begin
+      if params[:permission][:name].include? '@'
+        user = User.find_by(email: params[:permission][:name])
+      else
+        user = User.find_by(penname: params[:permission][:name])
+      end
+    rescue 
+      flash[:alert] = 'Invalid login credentials.'
+      redirect_to request.referrer
+    end
     # user.authenticate calls bcrypt to check if email and passwrd match a db entry
     if user && user.authenticate(params[:user][:password])
       # after we log in a user, we set their id, because we need it for before_filter
@@ -47,7 +56,7 @@ class SessionsController < ApplicationController
       flash[:notice] = "Welcome, #{user.penname}!" 
       redirect_to root_path 
     else
-      flash[:notice] = "Invalid login credentials." 
+      flash[:alert] = "Invalid login credentials." 
       redirect_to root_path
     end    
 

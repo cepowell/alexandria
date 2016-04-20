@@ -26,7 +26,7 @@
                 %tr
                   %td
                     - if (collection.user_id)
-                      = link_to "#{User.find(collection.user_id).penname}", pub_col_path(collection)
+                      = link_to "#{User.find(collection.user_id).penname}", user_path(User.find(collection.user_id))
                     - else
                       = "No author"
                   %td= collection.name 

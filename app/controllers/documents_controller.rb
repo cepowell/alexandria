@@ -104,7 +104,7 @@ class DocumentsController < ApplicationController
         user = User.find_by(penName: params[:permission][:name])
       end
     rescue 
-      flash[:notice] = 'Invalid user.'
+      flash[:alert] = 'Invalid user.'
       redirect_to request.referrer
     else
       perm = Permission.where(user_id: user.id, document_id: params[:id]).first
@@ -114,7 +114,7 @@ class DocumentsController < ApplicationController
           perm = Permission.create(user_id: user.id, document_id: params[:id], access: params[:permission][:access])
       end
       perm.save
-      flash[:notice] = 'You successfully shared this document with #{user.penname}'
+      flash[:notice] = "You successfully shared this document with #{user.penname}"
       redirect_to request.referrer
     end
   end
