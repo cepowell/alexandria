@@ -6,6 +6,8 @@ class PublishedController < ApplicationController
         # if so, then only the collections and documents with those tags should appear
         # else all published materials should appear
         if params[:search]
+            # hmmm 
+            
             if User.where(penname: params[:search]).nil?
                 @publishedCols = Collection.tagged_with(params[:search]).where(isPublished: true)
                 @publishedDocs = Document.tagged_with(params[:search]).where(isPublished: true)
