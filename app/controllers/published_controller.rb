@@ -2,20 +2,32 @@ class PublishedController < ApplicationController
     
     def index
         #raise params.inspect
-        # this is supposed to indicate whether the user has asked to search any tags
-        # if so, then only the collections and documents with those tags should appear
-        # else all published materials should appear
+        
         if params[:search]
-            # hmmm 
             
-            if User.where(penname: params[:search]).nil?
-                @publishedCols = Collection.tagged_with(params[:search]).where(isPublished: true)
-                @publishedDocs = Document.tagged_with(params[:search]).where(isPublished: true)
+            # to do mutliple tag/ tag + penname searching:
+            # searchString = params[:search].split(", ")
+            # masterList for both Docs and Cols to iterate through the searchString and
+            # append all qualifying instances 
+            # at end of the loop, set @publishedDocs/Cols to be their corresponding MasterList
+            
+            theUser = User.find_by(penname: params[:search])
+            taggedDocs = Document.where(isPublished: true).tagged_with(params[:search])
+            taggedCols = Collection.where(isPublished: true).tagged_with(params[:search])
+            
+            if !theUser.nil?
+                pennameDocs = Document.where(isPublished: true, user_id: theUser.id)
+                @publishedDocs = taggedDocs + pennameDocs
+                
+                pennameCols = Collection.where(isPublished: true, user_id: theUser.id)
+                @publishedCols = taggedCols + pennameCols
             else
-                user = User.find_by(penname: params[:search])
-                @publishedCols = Collection.where(isPublished: true, user_id: user.id)
-                @publishedDocs = Document.where(isPublished: true, user_id: user.id)
+                @publishedDocs = taggedDocs
+                @publishedCols = taggedCols
             end
+           
+            params.delete :search
+        
         else
             @publishedDocs = Document.where(isPublished: true)
             @publishedCols = Collection.where(isPublished: true)

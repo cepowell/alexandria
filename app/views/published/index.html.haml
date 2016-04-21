@@ -6,8 +6,10 @@
     = form_tag published_path, :method => :get, id: "search-form" do
       =label :name, "Search Published Documents"
       %BR
-      = text_field :search, params[:search], { :placeholder => "Tags separated by commas" }
+      = text_field :search, params[:search], { :placeholder => "Tags separated by commas", :size => "35px"}
       =submit_tag "Search"
+    .button
+      =link_to "Clear Search", root_path
     .container
       %header
         %h2 Published Collections
