@@ -6,16 +6,36 @@ class SessionsController < ApplicationController
   def create
     auth = request.env['omniauth.auth']
     
+    #render :text => auth_hash.inspect
     #raise request.env["omniauth.auth"].to_yaml
-    
-    #find_by_provider_and_uid
-    # testing a quick change
-     # creates a user from the 3rd party information we got
-    user=User.find_by_provider_and_uid(["provider"], auth["uid"]) || 
-    User.create_with_omniauth(auth)
+ 
+    user=Authorization.find_by_provider_and_uid(auth["provider"],auth["uid"]) ||
+      Authorization.create_with_omniauth(auth)
     session[:user_id] = user.id
     redirect_to root_path
-  end
+    
+    # @authorization = Authorization.find_by_provider_and_uid(auth["provider"], auth["uid"])
+    # if @authorization
+    # flash[:notice] = "Welcome back #{@authorization.user.first}! You have already signed up."
+    # else
+    #   user = User.new :name => auth["info"]["name"], :email => auth["info"]["email"]
+    #   user.authorizations.build :provider => auth["provider"], :uid => auth["uid"]
+    #   user.save
+ 
+    #   flash[:notice] ="Hi #{user.first}! You've signed up."
+    # end
+    
+    # if session[:user_id]
+    #   User.find(session[:user_id]).add_provider(auth)
+    #   flash[:notice] = "You can now login using #{auth["provider"].capitalize} too!"
+    # else
+    #   giveAuth = Authorization.find_or_create(auth)
+    #   session[:user_id] = giveAuth.user.id
+    #   flash[:notice] = "Welcome #{giveAuth.user.name}!"
+    # end
+      # session[:user_id] = user.id
+      # redirect_to root_path
+    end
   
   def destroy
     session.delete(:user_id)
@@ -60,5 +80,10 @@ class SessionsController < ApplicationController
       redirect_to root_path
     end    
 
-  end  
+  end 
+  
+  def failure
+    flash[:notice] = "Sorry, but you didn't allow access to Alexandria."
+  end
+  
 end

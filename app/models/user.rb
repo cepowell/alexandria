@@ -17,6 +17,7 @@
 class User < ActiveRecord::Base
     has_many :documents, :as => :user
     has_many :collections, :as => :user
+    
     has_secure_password
     
     attr_accessible :first, :last, :email, :password, :password_digests, :penname, :description
@@ -24,18 +25,16 @@ class User < ActiveRecord::Base
     validates :email, presence: true, uniqueness: true
     validates :penname, presence: true, uniqueness: true
     
+    # following code added to try and fix 3rd party auth
+    has_many :authorizations
+    
+    def add_provider(auth_hash)
+        # Check if the provider already exists, so we don't add it twice
+        unless authorizations.find_by_provider_and_uid(auth_hash["provider"], auth_hash["uid"])
+            Authorization.create :user => self, :provider => auth_hash["provider"], :uid => auth_hash["uid"]
+        end
+    end
+    
     #validates_uniqueness_of :email, :penname
     
-    # def self.create_with_omniauth(auth)
-    # create! do |user|
-      #  user.provider = auth["provider"]
-       # user.uid = auth["uid"]
-        # user.first = auth["info"]["name"]
-        # end
-    #end
-    # def self.create_with_omniauth(auth, user_id)
-  #  @authentication = Authentication.create(:user_id  => user_id, 
-    #                                       :provider => auth[:provider],
-     #                                 :uid      => auth[:uid])
-    #end
 end

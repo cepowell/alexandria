@@ -8,9 +8,10 @@
 %section.feature.6u{:class => "12u$(small)"}
 	%img.image.fit{:alt => "", :src => "/assets/login2.jpeg"}/
 
-
+.button
+= link_to 'Login with Twitter', '/auth/twitter'
+= link_to 'Login with Facebook', '/auth/facebook'
 .textbox
-	= link_to 'Login with Twitter', '/auth/twitter'
 	%p
 	= form_tag loginuser_path(@user), :method => :post do
 		= label :user, :email, 'Email or Pen Name'
