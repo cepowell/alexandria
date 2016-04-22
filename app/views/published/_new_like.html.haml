@@ -1,4 +1,4 @@
-%h4 <center> Likes </center>
+%p
 = form_tag new_like_path, :method => :post do
     = hidden_field :like, :document_id, value: document.id
     = hidden_field :like, :user_id, value: session[:user_id]

@@ -10,8 +10,17 @@
                 %td= document.title 
                 %td= link_to "More about #{document.title}", pub_col_doc_path(document)
 
-%br
-%br
+%p
+<h6>
+= label :collection, :tag_list, "Tags: "
+- @collection.tag_list.each do |tag|
+    #{tag}
+    = "," unless tag == @collection.tag_list.last
+</h6>
+
+.hr
+.hr
+
 = render :partial => "sharedPartials/comments", :locals => {:comments => @comments, :map => @map}
 
 %p
@@ -21,9 +30,7 @@
     =link_to "Log in to comment", '/login'
 
 %br
+
+.hr
 %br
-= label :collection, :tag_list, "Tags: "
-- @collection.tag_list.each do |tag|
-    #{tag},
-%BR
 = link_to 'Return to published works', published_path

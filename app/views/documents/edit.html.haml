@@ -2,15 +2,17 @@
 
 = form_tag document_path(@document), :method => :put do
   - if session[:user_id]==@document.user_id  
+    <h4>
     = label :document, :title, 'Title: '
+    </h4>
     = text_field :document, :title
     %br
+    <h5>
     = "Published? "
     = check_box_tag "is_Published", @document.isPublished, @document.isPublished
-    %br
+    </h5>
   - else 
     %h4 #{@document.title}
-  %br
   /input id=body, type=hidden, value=body
   = hidden_field :document, "content", value: @curFile
   %trix-editor{:input => "document_content", :placeholder => "Your text goes here... Happy writing!"}
@@ -19,13 +21,13 @@
   /%trix-editor{:input => "document_body", :placeholder => "Your text goes here... Happy writing!"}
   %p
   - if session[:user_id]==@document.user_id 
-    Select a collection for this document (optional).
-    %BR
+    %h6 Select a collection for this document (optional).
     = collection_select(:document, :collection_id, Collection.all || [], :id, :name, prompt: true)
-  %p
+  %br
+  <h6>
   = label :document, :tag_list, "Tags: "
+  </h6>
   = text_field :document, :tag_list, { :placeholder => "Tags separated by commas", :size => "35px" }
-  %BR
-  %BR
+  %br
   = submit_tag 'Save Changes'
   

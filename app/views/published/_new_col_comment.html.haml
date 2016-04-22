@@ -1,9 +1,10 @@
-
+%p
 = form_tag new_comment_path, :method => :post do
+  <h6>
   = label :comment, :body, 'Leave a comment on this collection: '
+  </h6>
   %br
-  %br
-  = text_area :comment, :body
+  = text_area :comment, :body, {:size => "75px"}
   = hidden_field :comment, :collection_id, value: collection.id
   = hidden_field :comment, :user_id, value: user.id
   %br

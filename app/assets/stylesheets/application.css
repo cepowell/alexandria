@@ -262,6 +262,30 @@
 /* Button */
 
 	input[type="submit"],
+	.button {
+		transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+		background-color: #EEEEEE;
+  		color: #333333;
+		border-radius: 4px;
+		border: 0;
+		/*color: #ffffff !important;*/
+		cursor: pointer;
+		display: inline-block;
+		font-family: 'Roboto Condensed';
+		text-transform: uppercase;
+		font-weight: 400;
+		height: 2em;
+		line-height: 2em;
+		padding: 0 1em;
+		text-align: center;
+		text-decoration: none;
+		white-space: nowrap;
+		border-top: 1px solid #CCCCCC;
+  		border-right: 1px solid #333333;
+  		border-bottom: 1px solid #333333;
+  		border-left: 1px solid #CCCCCC;
+	}
+	
 	input[type="reset"],
 	input[type="button"],
 	.button {
@@ -270,7 +294,6 @@
   		color: #333333;
 		border-radius: 4px;
 		border: 0;
-		/*color: #ffffff !important;*/
 		cursor: pointer;
 		display: inline-block;
 		font-family: 'Roboto Condensed';
@@ -329,7 +352,12 @@
 		input[type="reset"].small,
 		input[type="button"].small,
 		.button.small {
-			font-size: 0.8em;
+			height: 2em;
+			line-height: 2em;
+			padding: 0 1em;
+			background-color: #EEEEEE;
+  			color: inherit;
+  			display: inline-block;
 		}
 
 		input[type="submit"].big,
@@ -701,3 +729,11 @@
 		text-transform: uppercase;
 	}
 		
+	.hr {
+    	display: block;
+   		height: 1px;
+    	border: 0;
+    	border-top: 1px solid #ccc;
+    	margin: 1em 0;
+    	padding: 0;
+	}

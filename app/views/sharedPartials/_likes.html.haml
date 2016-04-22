@@ -1,10 +1,5 @@
-%h4 <center>Likes</center>
-%br
-%table.alt#documents
-    %thead
-        %tr
-            %th Name
-    %tbody
-        - @likes.each do |like|
-            %tr
-                %td= @likesmap[like.id] 
+%h6 Users Who Like This Document:
+-@likes.each do |like|
+    = @likesmap[like.id]
+    = "," unless like == @likes.last
+

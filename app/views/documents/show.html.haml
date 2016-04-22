@@ -1,15 +1,9 @@
 -# in app/views/documents/show.html.haml
 
 %h3 #{@document.title}
-
-
-<em>Publication Status: #{@pubStatus}</em>
-%br
-
+%h6 Publication Status: #{@pubStatus}
 
 %p
-
-
 
 .trix-content
     != @file
@@ -17,29 +11,35 @@
 %br
 
 %h6 #{@document.impressionist_count} views so far!
+<h6>
 = label :document, :tag_list, "Tags: "
 - @document.tag_list.each do |tag|
-    #{tag},
-%BR
+    #{tag}
+    = "," unless tag == @document.tag_list.last
+</h6>
+
+-if !@likes.empty?
+    .hr
+    .hr
+    =render :partial => "sharedPartials/likes", :locals => {:comments => @comments, :likesmap => @likesmap}
+    %br
+%br
+- if !@comments.empty?
+    = render :partial => "sharedPartials/comments", :locals => {:comments => @comments, :map => @map}
+    %br
+%br
+
+
 - if @perm=="owner" 
-    %p
-    = link_to 'Edit info ', edit_document_path(@document)
-    %br
-    %br
-    = link_to ' Return to My Work ', home_index_path
-    %br
-    %br
-    = link_to ' Delete ', document_path(@document), :method => :delete
-    %br
-    %br
-    
+    .hr
+    .hr
     %h4 <center>Share Document</center>
     %br
     = form_tag share_document_path(@document), :method => :post do
-        = 'Share with: '
+        = 'Share With: '
         = text_field :permission, :name 
         %br
-        = 'Access level: '
+        = 'Access Level: '
         = select(:permission, :access, {"Revise" => "revise", "Comment" => "comment"})
         %br
         = submit_tag 'Share'
@@ -59,23 +59,24 @@
                         %td= link_to "#{@mapAccess[curPer.id]}", user_path(User.find_by(penname: @mapAccess[curPer.id]).id)
                         %td= curPer.access
                         %td= link_to 'Remove Access', remove_share_path(curPer.id), :method => :delete
-
+    %p
+    .hr
+    = link_to 'Edit info ', edit_document_path(@document)
+    %br
+    %br
+    = link_to ' Return to My Work ', home_index_path
+    %br
+    %br
+    = link_to ' Delete ', document_path(@document), :method => :delete
+    %br
+    %br
 - else 
     - if @perm=="revise"
-        %p
+        .hr
         = link_to 'Edit info ', edit_document_path(@document)
         %br
         %br
     = link_to 'Return to shared documents ', shared_path
     %br
     %br
--if !@likes.empty?
-    =render :partial => "sharedPartials/likes", :locals => {:comments => @comments, :likesmap => @likesmap}
-    %br
-=render :partial => "published/new_like", :locals => {:document => @document}
-%br
-- if !@comments.empty?
-    = render :partial => "sharedPartials/comments", :locals => {:comments => @comments, :map => @map}
-    %br
-= render :partial => "published/new_comment", :locals => {:document => @document}    
-%br
+
