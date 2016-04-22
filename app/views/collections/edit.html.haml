@@ -1,12 +1,15 @@
 %h3 Edit Collection
 
 = form_tag collection_path(@collection), :method => :put do
-
+  <h4>
   = label :collection, :name, 'Title: '
+  </h4>
   = text_field :collection, :name
   %br
+  <h5>
   = "Published? "
   = check_box_tag "is_Published", @collection.isPublished, @collection.isPublished
+  </h5>
   %table.alt#freeDocs
     %thead
       %tr
@@ -21,8 +24,10 @@
         %tr
           %td= document.title 
           %td= check_box_tag "documents[#{document.id}]"
+  %br
+  <h6>
   = label :collection, :tag_list, "Tags: "
+  </h6>
   = text_field :collection, :tag_list, { :placeholder => "Tags separated by commas", :size => "35px" }
-  %BR
-  %BR
+  %br
   = submit_tag 'Save Changes'

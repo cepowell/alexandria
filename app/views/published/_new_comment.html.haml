@@ -1,9 +1,10 @@
-%h4 <center>Comments </center>
+%p
 = form_tag new_comment_path, :method => :post do
+  <h6>
   = label :comment, :body, 'Leave a comment on this document: '
-  %br 
+  </h6>
   %br
-  = text_area :comment, :body
+  = text_area :comment, :body, {:size => "75px"}
   = hidden_field :comment, :document_id, value: document.id
   = hidden_field :comment, :user_id, value: session[:user_id]
   %br

@@ -4,12 +4,14 @@
     %p
   %section#one.wrapper.style2.align-center
     = form_tag published_path, :method => :get, id: "search-form" do
-      =label :name, "Search Published Documents"
-      %BR
-      = text_field :search, params[:search], { :placeholder => "Tags separated by commas", :size => "35px"}
-      =submit_tag "Search"
-    .button
-      =link_to "Clear Search", root_path
+      <h3>
+      =label :name, "Search Published Documents and Collections"
+      </h3>
+      = text_field :search, params[:search], { :placeholder => "Search by author penname, document tag, or collection tag", :size => "55px"}
+      = submit_tag "Search"
+      .button.small
+        = link_to "Clear Search", root_path
+    %p
     .container
       %header
         %h2 Published Collections
