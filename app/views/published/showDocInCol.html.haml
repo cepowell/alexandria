@@ -2,23 +2,23 @@
 
 %h2 #{@collection.name}
 %h3 #{@document.title}
-%h6 #{@document.impressionist_count} views so far!
+- if (@document.user_id)
+    %h5 Author: #{User.find(@document.user_id).penname}
 %br
 
 .trix-content
     != @file
 
 %p
+.hr
+.hr
 <h6>
 = label :document, :tag_list, "Tags: "
 - @document.tag_list.each do |tag|
     #{tag}
     = "," unless tag == @document.tag_list.last
 </h6>
-
-.hr
-.hr
-
+%h6 #{@document.impressionist_count} views so far!
 %br
 = render :partial => "sharedPartials/likes", :locals => {:likes => @likes, :likesmap => @likesmap}
 %br
