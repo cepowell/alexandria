@@ -1,4 +1,7 @@
 %h3 #{@collection.name}
+- if (@collection.user_id)
+    %h5 Author: #{User.find(@collection.user_id).penname}
+
 %table.alt#documents_with_id
     %thead
         %tr
