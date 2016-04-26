@@ -20,6 +20,16 @@
 
 .hr
 .hr
+= render :partial => "sharedPartials/col_likes", :locals => {:likes => @likes, :likesmap => @likesmap}
+
+%p
+- if !@notSignedIn
+    = render :partial => "new_col_like", :locals => {:user => @user, :collection => @collection}
+- if @notSignedIn
+    =link_to "Log in to like", '/login'
+    
+.hr
+.hr
 
 = render :partial => "sharedPartials/comments", :locals => {:comments => @comments, :map => @map}
 

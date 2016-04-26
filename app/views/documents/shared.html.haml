@@ -18,7 +18,7 @@
               %tbody
                 - @documents.each do |document|
                   %tr
-                    %td= @map[document.id]
+                    %td= link_to "#{@map[document.id]}", user_path(User.find(document.user_id))
                     %td= document.title
                     %td= @map2[document.id]
                     %td= link_to "More about #{document.title}", document_path(document)
