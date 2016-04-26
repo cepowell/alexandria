@@ -1,32 +1,35 @@
-<center>
-%h2 Join Alexandria!
-</center>
-<center>
-%h3 Create an account to get started.
-</center>
-
-%section.feature.6u{:class => "12u$(small)"}
-	%img.image.fit{:alt => "", :src => "/assets/logincomp.jpeg"}/
-
-.textbox
-	= form_tag signup_path(@user), :method => :post do
-		= label :user, :first, 'First Name: '
-		= text_field :user, :first
-		%br
-		= label :user, :last, 'Last Name: '
-		= text_field :user, :last
-		%br
-		= label :user, :penname, 'Pen Name: '
-		= text_field :user, :penname
-		%br
-		= label :user, :email, 'Email: '
-		= text_field :user, :email
-		%br
-		= label :user, :password, 'Password: '
-		= password_field :user, :password 
-		%br
-		= label :user, :password_digest, 'Password Confirmation: '
-		= password_field :user, :password_digest
-		%br
-		= submit_tag 'Sign up'
+%body.landing
+	%section#signupbanner
+		%h2
+		%p
+		.login-box
+			.box-header
+				%h2 Join Alexandria!
+				%h3 Create An Account To Get Started
+			= form_tag signup_path(@user), :method => :post do
+				= label :user, :first, 'First Name'
+				%br
+				= text_field :user, :first
+				%br
+				= label :user, :last, 'Last Name'
+				%br
+				= text_field :user, :last
+				%br
+				= label :user, :penname, 'Pen Name'
+				%br
+				= text_field :user, :penname
+				%br
+				= label :user, :email, 'Email'
+				%br
+				= text_field :user, :email
+				%br
+				= label :user, :password, 'Password'
+				%br
+				= password_field :user, :password 
+				%br
+				= label :user, :password_digest, 'Password Confirmation'
+				%br
+				= password_field :user, :password_digest
+				%br
+				= submit_tag 'Sign up', :class => 'button small'
 

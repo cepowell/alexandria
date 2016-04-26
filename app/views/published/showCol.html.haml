@@ -1,4 +1,7 @@
 %h3 #{@collection.name}
+- if (@collection.user_id)
+    %h5 Author: #{User.find(@collection.user_id).penname}
+
 %table.alt#documents_with_id
     %thead
         %tr
@@ -18,6 +21,16 @@
     = "," unless tag == @collection.tag_list.last
 </h6>
 
+.hr
+.hr
+= render :partial => "sharedPartials/col_likes", :locals => {:likes => @likes, :likesmap => @likesmap}
+
+%p
+- if !@notSignedIn
+    = render :partial => "new_col_like", :locals => {:user => @user, :collection => @collection}
+- if @notSignedIn
+    =link_to "Log in to like", '/login'
+    
 .hr
 .hr
 

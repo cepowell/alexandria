@@ -1,0 +1,12 @@
+%p
+- if !Like.where(user_id: session[:user_id], collection_id: collection.id).exists?
+    = form_tag new_col_like_path, :method => :post do
+        = hidden_field :like, :collection_id, value: collection.id
+        = hidden_field :like, :user_id, value: session[:user_id]
+        = submit_tag 'Like'
+    
+- if Like.where(user_id: session[:user_id], collection_id: collection.id).exists?
+    = form_tag col_unlike_path, :method => :delete do
+        = hidden_field :like, :collection_id, value: collection.id
+        = hidden_field :like, :user_id, value: session[:user_id]
+        = submit_tag 'Unlike'

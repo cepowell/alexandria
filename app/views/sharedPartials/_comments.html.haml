@@ -8,5 +8,5 @@
     %tbody
         - @comments.each do |comment|
             %tr
-                %td= @map[comment.id] 
+                %td= link_to "#{@map[comment.id]}", user_path(User.find(comment.user_id)) 
                 %td= comment.body

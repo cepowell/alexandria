@@ -1,5 +1,12 @@
 %p
-= form_tag new_like_path, :method => :post do
-    = hidden_field :like, :document_id, value: document.id
-    = hidden_field :like, :user_id, value: session[:user_id]
-    = submit_tag 'Like'
+- if !Like.where(user_id: session[:user_id], document_id: document.id).exists?
+    = form_tag new_like_path, :method => :post do
+        = hidden_field :like, :document_id, value: document.id
+        = hidden_field :like, :user_id, value: session[:user_id]
+        = submit_tag 'Like'
+    
+- if Like.where(user_id: session[:user_id], document_id: document.id).exists?
+    = form_tag unlike_path, :method => :delete do
+        = hidden_field :like, :document_id, value: document.id
+        = hidden_field :like, :user_id, value: session[:user_id]
+        = submit_tag 'Unlike'

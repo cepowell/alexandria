@@ -1,5 +1,4 @@
-%h6 Users Who Like This Document:
+%h6 Users Who Like This Collection:
 -@likes.each do |like|
     = link_to "#{@likesmap[like.id]}", user_path(User.find(like.user_id))
     = "," unless like == @likes.last
-

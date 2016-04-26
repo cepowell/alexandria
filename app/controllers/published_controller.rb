@@ -60,8 +60,10 @@ class PublishedController < ApplicationController
         @comments = Comment.where(collection_id: @collection.id)
         @map = Hash.new
         @comments.each do |comment|
-            @map[comment.id] = User.find(comment.user_id).first
+            @map[comment.id] = User.find(comment.user_id).penname
         end
+        @likes = getColLikes(@collection)
+        @likesmap = likesMap(@likes)
         @notSignedIn = session[:user_id].nil?
         if !@notSignedIn
             @user = User.find(session[:user_id])

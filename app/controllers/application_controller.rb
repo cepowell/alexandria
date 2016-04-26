@@ -27,6 +27,10 @@ class ApplicationController < ActionController::Base
     return Like.where(document_id: doc.id)
   end
   
+  def getColLikes(col)
+    return Like.where(collection_id: col.id)
+  end
+  
   def likesMap(likes)
     map = Hash.new
     likes.each do |like|
@@ -42,7 +46,7 @@ class ApplicationController < ActionController::Base
   def commentsMap(comments)
     map = Hash.new
     comments.each do |comment|
-        map[comment.id] = User.find(comment.user_id).first
+        map[comment.id] = User.find(comment.user_id).penname
     end
     return map
   end

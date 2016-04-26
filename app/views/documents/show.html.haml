@@ -21,7 +21,7 @@
 -if !@likes.empty?
     .hr
     .hr
-    =render :partial => "sharedPartials/likes", :locals => {:comments => @comments, :likesmap => @likesmap}
+    =render :partial => "sharedPartials/likes", :locals => {:likes => @likes, :likesmap => @likesmap}
     %br
 %br
 - if !@comments.empty?

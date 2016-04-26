@@ -12,6 +12,13 @@ class CollectionsController < ApplicationController
     def show
         id = params[:id]
         @collection = Collection.find(id)
+        @comments = Comment.where(collection_id: @collection.id)
+        @map = Hash.new
+        @comments.each do |comment|
+            @map[comment.id] = User.find(comment.user_id).penname
+        end
+        @likes = getColLikes(@collection)
+        @likesmap = likesMap(@likes)
         unless session[:user_id] == @collection.user_id
             flash[:alert] = "You don't have access to this collection!"
             redirect_to root_path
