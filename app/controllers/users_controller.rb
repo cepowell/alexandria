@@ -19,12 +19,12 @@ class UsersController < ApplicationController
 	def show
 		@current_user = true
 	    #@user = User.find(session[:user_id])
-	    	    @current = User.find(session[:user_id])
-	    @user = User.find(params[:id])	end
+	   	@current = User.find(session[:user_id])
+	    @user = User.find(params[:id])	
+	end
 	
 	def edit
-		@current = true
-		
+		@current_user = true
 	    @user = User.find(session[:user_id])
 	end
 	
