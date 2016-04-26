@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     end 
 	
 	def update
-		@user = User.find(session[:user_id])
+		@user = User.find(params[:id])
 	    if @user.update_attributes(params[:user])
             redirect_to user_path(@user)
     	end
@@ -19,12 +19,12 @@ class UsersController < ApplicationController
 	def show
 		@current_user = true
 	    #@user = User.find(session[:user_id])
-	    @current = User.find(session[:user_id])
-	    @user = User.find(params[:id])
-	end
+	    	    @current = User.find(session[:user_id])
+	    @user = User.find(params[:id])	end
 	
 	def edit
-		@current_user = true
+		@current = true
+		
 	    @user = User.find(session[:user_id])
 	end
 	
