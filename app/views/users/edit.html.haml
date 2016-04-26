@@ -15,6 +15,8 @@
     = text_field :user, :email
     %br
     = label :user, :description, 'Describe Yourself! '
-    = text_area :user, :description
+    %br
+    %br
+    = text_area :user, :description, {:size => '50px'}
     %br
     = submit_tag 'Save Changes'

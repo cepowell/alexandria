@@ -14,7 +14,8 @@
         .alert=flash[:alert]
       .container
       %h1
-        %a Project Alexandria
+        %a 
+        =link_to "Project Alexandria", root_path
       %nav#nav
         %ul
           -if @current_user

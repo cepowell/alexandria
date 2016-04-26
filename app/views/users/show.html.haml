@@ -15,5 +15,6 @@
 #{@user.description}
 
 %p
--if @user.id == @current.id
-    =link_to 'Edit Profile', edit_user_path(@user)
+-if !session[:user_id].nil?
+    -if @user.id == @current.id
+        =link_to 'Edit Profile', edit_user_path(@user)

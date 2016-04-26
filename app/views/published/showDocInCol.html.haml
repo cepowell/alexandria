@@ -25,7 +25,9 @@
 - if !@notSignedIn
     =render :partial => "new_like", :locals => {:user => @user, :document => @document}
 - if @notSignedIn
-    =link_to "Log in to like", '/login'
+    %br
+    .button.small
+        =link_to "Log in to like", '/login'
 
 .hr
 .hr
@@ -36,7 +38,8 @@
 - if !@notSignedIn
     = render :partial => "new_comment", :locals => {:user => @user, :document => @document}
 - if @notSignedIn
-    =link_to "Log in to comment", '/login'
+    .button.small
+        =link_to "Log in to comment", '/login'
 
 .hr
 %br

@@ -13,13 +13,15 @@ class UsersController < ApplicationController
 		@user = User.find(session[:user_id])
 	    if @user.update_attributes(params[:user])
             redirect_to user_path(@user)
-    	end
+		end
 	end
 	
 	def show
-		@current_user = true
+		if !session[:user_id].nil?
+			@current_user = true
+			@current = User.find(session[:user_id])
+		end
 	    #@user = User.find(session[:user_id])
-	    @current = User.find(session[:user_id])
 	    @user = User.find(params[:id])
 	end
 	
