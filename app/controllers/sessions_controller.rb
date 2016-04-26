@@ -4,17 +4,21 @@ class SessionsController < ApplicationController
   
   # creates a new user with the 3rd party auth via Twitter
   def create
-    auth = request.env['omniauth.auth']
     
-    #raise request.env["omniauth.auth"].to_yaml
     
-    #find_by_provider_and_uid
-    # testing a quick change
-     # creates a user from the 3rd party information we got
-    user=User.find_by_provider_and_uid(["provider"], auth["uid"]) || 
-    User.create_with_omniauth(auth)
+    user = User.from_omniauth(env["omniauth.auth"])
     session[:user_id] = user.id
+    
     redirect_to root_path
+    
+    #render :text => auth_hash.inspect
+    #raise request.env["omniauth.auth"].to_yaml
+ 
+    #Original
+    # user=Authorization.find_by_provider_and_uid(auth["provider"],auth["uid"]) || Authorization.create_with_omniauth(auth)
+    # #session[:user_id] = user.id
+    #redirect_to root_path
+    
   end
   
   def destroy
@@ -31,11 +35,6 @@ class SessionsController < ApplicationController
   end 
   
   def find    
-      
-    #raise params.to_yaml
-    
-    #raise params[:user][:email].inspect
-
     #user = User.find_by_email(params[:user][:email]) || User.find_by(penname: params[:user][:penname])
     begin
       if params[:permission][:name].include? '@'
@@ -60,5 +59,10 @@ class SessionsController < ApplicationController
       redirect_to root_path
     end    
 
-  end  
+  end 
+  
+  def failure
+    flash[:notice] = "Sorry, but you didn't allow access to Alexandria."
+  end
+  
 end

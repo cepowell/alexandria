@@ -2,11 +2,13 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  
+
   # IS NOT CURRENTLY WORKING. NEED TO FIX
   # for setting user, authorizing them
   before_filter :set_current_user
-  #before_filter :set_current_user, :authorize
+  
+  # this line causes too many redirects to happen => error 
+  # before_filter :set_current_user, :authorize
   
   
   # for user authentication, taken directly from myrottenpotatoes

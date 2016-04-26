@@ -12,7 +12,7 @@ gem 'bcrypt', '~>3.1.7'
 
 # Gems for 3rd Party Auth
 gem 'omniauth-twitter'
-gem 'omniauth-facebook' # need authentication gem for each secondary source we want to authenticate from
+gem 'omniauth-facebook' 
 
 # Gems for storing files
 gem 'paperclip'
