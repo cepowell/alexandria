@@ -2,7 +2,6 @@ class UsersController < ApplicationController
 
 # for users who want to sign up for access to site 
 # without 3rd party auth
-
     skip_before_filter :set_current_user #:authorize 
     
     def new
@@ -17,17 +16,27 @@ class UsersController < ApplicationController
 	end
 	
 	def show
-		if !session[:user_id].nil?
-			@current_user = true
-			@current = User.find(session[:user_id])
+		begin
+			if !session[:user_id].nil?
+				@current_user = true
+				@current = User.find(session[:user_id])
+			end
+		    #@user = User.find(session[:user_id])
+		    @user = User.find(params[:id])
+		rescue	
+			redirect_to root_path
+			flash[:alert] = "You don't have access to that page."
 		end
-	    #@user = User.find(session[:user_id])
-	    @user = User.find(params[:id])
 	end
 	
 	def edit
-		@current_user = true
-	    @user = User.find(session[:user_id])
+		begin
+			@current_user = true
+		    @user = User.find(session[:user_id])
+		rescue
+			redirect_to root_path
+			flash[:alert] = "You don't have access to that page."
+		end
 	end
 	
     def create

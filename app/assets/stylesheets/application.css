@@ -746,6 +746,8 @@
 		text-align: center;
 		font-family: 'Roboto Condensed', sans-serif; 
 		text-transform: uppercase;
+		top: 3.5em;
+		position: absolute;
 	}
 	
 	.notice {
@@ -756,6 +758,8 @@
 		text-align: center;
 		font-family: 'Roboto Condensed', sans-serif; 
 		text-transform: uppercase;
+		top: 3.5em;
+		position: absolute;
 	}
 		
 	.hr {

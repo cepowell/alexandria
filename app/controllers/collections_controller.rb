@@ -1,4 +1,10 @@
 class CollectionsController < ApplicationController
+    def allowed(collection)
+        unless collection.user_id == session[:user_id]
+            redirect_to root_path
+            flash[:alert] = "You don't have access to that page."
+        end
+    end
     
     def index
         @collections = Collection.all
@@ -10,32 +16,39 @@ class CollectionsController < ApplicationController
     end
     
     def show
-        id = params[:id]
-        @collection = Collection.find(id)
-        @comments = Comment.where(collection_id: @collection.id)
-        @map = Hash.new
-        @comments.each do |comment|
-            @map[comment.id] = User.find(comment.user_id).penname
-        end
-        @likes = getColLikes(@collection)
-        @likesmap = likesMap(@likes)
-        unless session[:user_id] == @collection.user_id
-            flash[:alert] = "You don't have access to this collection!"
+        begin
+            id = params[:id]
+            @collection = Collection.find(id)
+            allowed(@collection)
+            @comments = Comment.where(collection_id: @collection.id)
+            @map = Hash.new
+            @comments.each do |comment|
+                @map[comment.id] = User.find(comment.user_id).penname
+            end
+            @likes = getColLikes(@collection)
+            @likesmap = likesMap(@likes)
+            if @collection.isPublished
+              @pubStatus = "Published"
+            else
+              @pubStatus = "Private"
+            end
+            @curDocs = Document.where(collection_id: params[:id])
+        rescue
             redirect_to root_path
+            flash[:alert] = "You don't have access to that page."
         end
-        if @collection.isPublished
-          @pubStatus = "Published"
-        else
-          @pubStatus = "Private"
-        end
-        @curDocs = Document.where(collection_id: params[:id])
     end
 
     def edit
-        @collection = Collection.find params[:id]
-        @curDocs = Document.where(collection_id: params[:id])
-        @freeDocs = Document.where(collection_id: nil, user_id: session[:user_id])
-
+        begin
+            @collection = Collection.find params[:id]
+            allowed(@collection)
+            @curDocs = Document.where(collection_id: params[:id])
+            @freeDocs = Document.where(collection_id: nil, user_id: session[:user_id])
+        rescue  
+            redirect_to root_path
+            flash[:alert] = "You don't have access to that page."
+        end
     end
     
     def create
@@ -55,8 +68,6 @@ class CollectionsController < ApplicationController
         end
         
         #associate files with collections
-        
-        
         redirect_to home_index_path
     end
     

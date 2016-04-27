@@ -1,38 +1,50 @@
 class DocumentsController < ApplicationController
   
+  def allowed(document, perm)
+    unless document.user_id == session[:user_id] || perm == "revise"
+      redirect_to root_path
+      flash[:alert] = "You don't have access to that page."
+    end
+  end
+  
   def index
     @documents = Document.all
     @mydocs = Document.where(session[:user_id])
   end
   
   def show
-    sessionId = session[:user_id]
-    @document = Document.find(params[:id])
-    @comments = getComments(@document)
-    @likes = getLikes(@document)
-    @map = commentsMap(@comments)
-    @likesmap = likesMap(@likes)
-    if sessionId == @document.user_id
-      @perm = "owner"
-    else
-      @perm = Permission.where(user_id: session[:user_id], document_id: @document.id).first.access
+    begin
+      sessionId = session[:user_id]
+      @document = Document.find(params[:id])
+      @comments = getComments(@document)
+      @likes = getLikes(@document)
+      @map = commentsMap(@comments)
+      @likesmap = likesMap(@likes)
+      if sessionId == @document.user_id
+        @perm = "owner"
+      else
+        @perm = Permission.where(user_id: session[:user_id], document_id: @document.id).first.access
+      end
+      @curPermissions = Permission.where(document_id: params[:id])
+      @mapAccess = Hash.new
+      @curPermissions.each do |curPer|
+        @mapAccess[curPer.id] = User.find(curPer.user_id).penname
+      end
+      #raise @mapAccess.to_s
+      if @document.isPublished
+        @pubStatus = "Published"
+      else
+        @pubStatus = "Private"
+      end
+      s3_file_path ="documents/documents/000/000/#{format("%03d", @document.id)}/original/#{@document.content_file_name}"
+      s3 = AWS::S3.new(:access_key_id => ENV['AWS_ACCESS_KEY_ID'], :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'])
+      bucket = s3.buckets[ENV['S3_BUCKET_NAME']]
+      @file = bucket.objects["#{s3_file_path}"].read
+      #@file = Paperclip.io_adapters.for(@document.content).read
+    rescue 
+      redirect_to root_path
+      flash[:alert] = "You don't have access to that page."
     end
-    @curPermissions = Permission.where(document_id: params[:id])
-    @mapAccess = Hash.new
-    @curPermissions.each do |curPer|
-      @mapAccess[curPer.id] = User.find(curPer.user_id).penname
-    end
-    #raise @mapAccess.to_s
-    if @document.isPublished
-      @pubStatus = "Published"
-    else
-      @pubStatus = "Private"
-    end
-    s3_file_path ="documents/documents/000/000/#{format("%03d", @document.id)}/original/#{@document.content_file_name}"
-    s3 = AWS::S3.new(:access_key_id => ENV['AWS_ACCESS_KEY_ID'], :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'])
-    bucket = s3.buckets[ENV['S3_BUCKET_NAME']]
-    @file = bucket.objects["#{s3_file_path}"].read
-    #@file = Paperclip.io_adapters.for(@document.content).read
   end
   
   def create
@@ -79,12 +91,23 @@ class DocumentsController < ApplicationController
   end
   
   def edit
-    @document = Document.find params[:id]
-    s3_file_path ="documents/documents/000/000/#{format("%03d", @document.id)}/original/#{@document.content_file_name}"
-    s3 = AWS::S3.new(:access_key_id => ENV['AWS_ACCESS_KEY_ID'], :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'])
-    bucket = s3.buckets[ENV['S3_BUCKET_NAME']]
-    @curFile = bucket.objects["#{s3_file_path}"].read
-    #raise @curFile
+    begin 
+      @document = Document.find params[:id]
+      if session[:user_id] == @document.user_id
+        @perm = "owner"
+      else
+        @perm = Permission.where(user_id: session[:user_id], document_id: @document.id).first.access
+      end
+      allowed(@document, @perm)
+      s3_file_path ="documents/documents/000/000/#{format("%03d", @document.id)}/original/#{@document.content_file_name}"
+      s3 = AWS::S3.new(:access_key_id => ENV['AWS_ACCESS_KEY_ID'], :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'])
+      bucket = s3.buckets[ENV['S3_BUCKET_NAME']]
+      @curFile = bucket.objects["#{s3_file_path}"].read
+      #raise @curFile
+    rescue
+      redirect_to root_path
+      flash[:alert] = "You don't have access to that page."
+    end
   end
   
   def destroy
@@ -99,8 +122,15 @@ class DocumentsController < ApplicationController
   def share
     #raise params.inspect
     #raise params[:permissions].inspect
+    current = User.find_by(id: session[:user_id])
     begin
-      if params[:permission][:name].include? '@'
+      if params[:permission][:name] == current.penname
+        flash[:alert] = "You can't share with yourself!"
+        redirect_to request.referrer
+      elsif params[:permission][:name] == current.email
+        flash[:alert] = "You can't share with yourself!"
+        redirect_to request.referrer
+      elsif params[:permission][:name].include? '@'
         user = User.find_by(email: params[:permission][:name])
       else
         user = User.find_by(penName: params[:permission][:name])
@@ -109,15 +139,17 @@ class DocumentsController < ApplicationController
       flash[:alert] = 'Invalid user.'
       redirect_to request.referrer
     else
-      perm = Permission.where(user_id: user.id, document_id: params[:id]).first
-      if perm!=nil
-        perm.access=params[:permission][:access]
-      else
-          perm = Permission.create(user_id: user.id, document_id: params[:id], access: params[:permission][:access])
+      if !user.nil?
+        perm = Permission.where(user_id: user.id, document_id: params[:id]).first
+        if perm!=nil
+          perm.access=params[:permission][:access]
+        else
+            perm = Permission.create(user_id: user.id, document_id: params[:id], access: params[:permission][:access])
+        end
+        perm.save
+        flash[:notice] = "You successfully shared this document with #{user.penname}"
+        redirect_to request.referrer
       end
-      perm.save
-      flash[:notice] = "You successfully shared this document with #{user.penname}"
-      redirect_to request.referrer
     end
   end
   

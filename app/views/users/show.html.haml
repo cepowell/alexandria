@@ -17,4 +17,6 @@
 %p
 -if !session[:user_id].nil?
     -if @user.id == @current.id
+        .hr
+        .hr
         =link_to 'Edit Profile', edit_user_path(@user)

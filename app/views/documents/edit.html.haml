@@ -22,7 +22,7 @@
   %p
   - if session[:user_id]==@document.user_id 
     %h6 Select a collection for this document (optional).
-    = collection_select(:document, :collection_id, Collection.all || [], :id, :name, prompt: true)
+    = collection_select(:document, :collection_id, Collection.where(:user_id => session[:user_id]) || [], :id, :name, prompt: true)
   %br
   <h6>
   = label :document, :tag_list, "Tags: "
