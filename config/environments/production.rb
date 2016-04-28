@@ -82,11 +82,11 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => 'https://alexandriapp.herokuapp.com/' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address => "smtp.gmail.com",
+    :address => "smtp.sendgrid.net",
     :port => "587",
-    :domain => "gmail.com",
-    :user_name => ENV['GMAIL_USERNAME'],
-    :password => ENV['GMAIL_PASSWORD'],
+    :domain => "heroku.com",
+    :user_name => ENV['SENDGRID_USERNAME'],
+    :password => ENV['SENDGRID_PASSWORD'],
     :authentication => "plain",
     :enable_starttls_auto => true
   } 
