@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
     has_secure_password
     
     attr_accessible :first, :last, :email, :password, :password_digests, :penname, :description
+    attr_accessor :reset_token
     
     validates :email, presence: true, uniqueness: true
     validates :penname, presence: true, uniqueness: true
@@ -34,8 +35,26 @@ class User < ActiveRecord::Base
     #         Authorization.create :user => self, :provider => auth_hash["provider"], :uid => auth_hash["uid"]
     #     end
     # end
+    def User.new_token
+        SecureRandom.urlsafe_base64
+    end
+    
+    def User.digest(string)
+        cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+                                                  BCrypt::Engine.cost
+        BCrypt::Password.create(string, cost: cost)
+    end
     
     #validates_uniqueness_of :email, :penname
+    def create_reset_digest
+        self.reset_token = User.new_token
+        update_attribute(:reset_digest,  User.digest(reset_token))
+        update_attribute(:reset_sent_at, Time.zone.now)
+    end
+    
+    def send_password_reset_email
+        UserMailer.password_reset(self).deliver_now
+    end
     
     def self.from_omniauth(auth)
         where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|

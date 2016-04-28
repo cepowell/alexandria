@@ -1,0 +1,14 @@
+.login-box
+    .box-header
+        %h2 Reset Password
+    = form_for(@user, url: password_reset_path(params[:id])) do |f|
+        = hidden_field_tag :email, @user.email
+        = f.label :password, "New Password"
+        %br
+        = f.password_field :password
+        %br
+        = f.label :password_digest, "New Password Confirmation"
+        %br
+        = f.password_field :password_digest
+        %br
+        = f.submit "Reset Password", class: "button small"
