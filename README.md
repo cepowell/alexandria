@@ -13,4 +13,5 @@ Visit alexandriapp.herokuapp.com to create an account and get started!
 ### Who do I talk to? ###
 
 Developers: Susana Fotu, Cait Powell, Juliana Uemura de Heer, Simon Whitelaw
-Contact: alexandriaproject2016@gmail.com 
+
+Contact: alexandriaproject2016@gmail.com
