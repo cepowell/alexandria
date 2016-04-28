@@ -32,4 +32,6 @@
 				= password_field :user, :password_digest
 				%br
 				= submit_tag 'Sign up', :class => 'button small'
+			.button.small
+				=link_to 'Sign up with Twitter', '/auth/twitter'
 

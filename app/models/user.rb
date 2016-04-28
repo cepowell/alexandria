@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
         where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
            user.provider = auth.provider
            user.uid = auth.uid
-           user.email = SecureRandom.hex(9) #can use Faker gem to create fake email
+           user.email = auth.info.email #can use Faker gem to create fake email
            user.oauth_token = auth.credentials.token
            user.penname = auth.info.name #need to figure out how to format this correctly 
            # ["nickname", "ghtjg"]
