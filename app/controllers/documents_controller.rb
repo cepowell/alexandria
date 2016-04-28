@@ -8,6 +8,8 @@ class DocumentsController < ApplicationController
   end
   
   def index
+    redirect_to root_path
+    flash[:alert] = "You don't have access to that page."
     @documents = Document.all
     @mydocs = Document.where(session[:user_id])
   end
