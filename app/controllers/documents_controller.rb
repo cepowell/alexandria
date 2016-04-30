@@ -1,6 +1,7 @@
 class DocumentsController < ApplicationController
   
   def allowed(document, perm)
+    raise document.user_id.inspect
     unless document.user_id == session[:user_id] || perm == "revise"
       redirect_to root_path
       flash[:alert] = "You don't have access to that page."
@@ -15,14 +16,14 @@ class DocumentsController < ApplicationController
   end
   
   def new
-    @attachments = Attachment.where(document_id: params[:id])
+    #@attachments = Attachment.where(document_id: params[:id])
   end
   
   def show
     begin
       sessionId = session[:user_id]
       @document = Document.find(params[:id])
-      @attachments = Attachment.where(document_id: params[:id])
+      #@attachments = Attachment.where(document_id: params[:id])
       @comments = getComments(@document)
       @likes = getLikes(@document)
       @map = commentsMap(@comments)
@@ -70,7 +71,7 @@ class DocumentsController < ApplicationController
     s3 = AWS::S3.new(:access_key_id => ENV['AWS_ACCESS_KEY_ID'], :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'])
     bucket = s3.buckets[ENV['S3_BUCKET_NAME']]
     bucket.objects["#{s3_file_path}"].write(content)
-    @attachments = Attachment.where(document_id: params[:id])
+    #@attachments = Attachment.where(document_id: params[:id])
     redirect_to document_path(@document)
   end
   
