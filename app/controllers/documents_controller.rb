@@ -1,6 +1,7 @@
 class DocumentsController < ApplicationController
   
   def allowed(document, perm)
+    raise document.user_id.inspect
     unless document.user_id == session[:user_id] || perm == "revise"
       redirect_to root_path
       flash[:alert] = "You don't have access to that page."
