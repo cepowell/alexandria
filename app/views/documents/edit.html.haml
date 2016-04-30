@@ -26,8 +26,13 @@
   = text_field :document, :tag_list, { :placeholder => "Tags separated by commas", :size => "35px" }
   %br
   %br
-  - if session[:user_id]==@document.user_id 
-    %h6 Attach files
-    = render :partial => "new_attachment", :locals => {:user => @user, :document => @document}
-  = render :partial => "attachments", :locals => {:attachments => @attachments}
   = submit_tag 'Save Changes'
+  %br
+  %br
+  .hr
+  %br
+  %br
+- if session[:user_id]==@document.user_id 
+  %h6 Attach files
+  = render :partial => "new_attachment", :locals => {:user => @user, :document => @document}
+= render :partial => "attachments", :locals => {:attachments => @attachments}
