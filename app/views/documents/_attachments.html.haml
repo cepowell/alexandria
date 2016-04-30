@@ -4,16 +4,10 @@
     %table.alt#documents
         %thead
             %tr
-                %th Attachment Id
-                %th Attachment Name
-                %th User Id
-                %th Document Id
+                %th File
                 %th Delete
         %tbody
             - @attachments.each do |attachment|
                 %tr
-                    %td= attachment.id
                     %td= link_to attachment.file_file_name, attachment.file.url
-                    %td= attachment.user_id
-                    %td= attachment.document_id
                     %td= link_to 'Remove', document_attachment_path(attachment.document_id, attachment.id), :method => :delete

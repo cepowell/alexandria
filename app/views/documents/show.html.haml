@@ -9,9 +9,12 @@
     != @file
 %br
 %br
+.hr
+%br
+%br
 -if @perm=="owner" || @perm=="revise"
+    %h6 Attach files
     = render :partial => "new_attachment", :locals => {:user => @user, :document => @document}
-
 -if !@attachments.empty?
     = render :partial => "attachments", :locals => {:attachments => @attachments}
 

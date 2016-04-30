@@ -35,4 +35,5 @@
 - if session[:user_id]==@document.user_id 
   %h6 Attach files
   = render :partial => "new_attachment", :locals => {:user => @user, :document => @document}
-= render :partial => "attachments", :locals => {:attachments => @attachments}
+-if !@attachments.empty?
+  = render :partial => "attachments", :locals => {:attachments => @attachments}
