@@ -3,6 +3,7 @@
   = file_field :attachment, :file
   = hidden_field :attachment, :document_id, value: document.id
   = hidden_field :attachment, :user_id, value: session[:user_id]
+  %br
   = submit_tag 'Upload'
 
 

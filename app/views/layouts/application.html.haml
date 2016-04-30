@@ -56,3 +56,16 @@
           %li
             Images:
             %a{:href => "http://unsplash.com"} Unsplash
+
+:javascript
+  $(document).ready(function(){
+    setTimeout(function(){
+      $('.notice').remove();
+    }, 5000);
+   })
+   
+  $(document).ready(function(){
+    setTimeout(function(){
+      $('.alert').remove();
+    }, 5000);
+   })

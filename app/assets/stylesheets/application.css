@@ -742,24 +742,28 @@
 		width: 100%;
 		height: 3.5em;
 		color: white;
-		background-color: #990000;
+		background-color: rgba(153,0,0,0.8);
 		text-align: center;
 		font-family: 'Roboto Condensed', sans-serif; 
 		text-transform: uppercase;
 		top: 3.5em;
 		position: absolute;
+		border-radius: 18px;
+    	border: 2px solid #990000;
 	}
 	
 	.notice {
 		width: 100%;
 		height: 3.5em;
 		color: white;
-		background-color: #9ACD32;
+		background-color: rgba(154,205,50,0.8);
 		text-align: center;
 		font-family: 'Roboto Condensed', sans-serif; 
 		text-transform: uppercase;
 		top: 3.5em;
 		position: absolute;
+		border-radius: 18px;
+    	border: 2px solid #9ACD32;
 	}
 		
 	.hr {

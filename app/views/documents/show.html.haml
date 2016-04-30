@@ -60,6 +60,8 @@
                         %td= curPer.access
                         %td= link_to 'Remove Access', remove_share_path(curPer.id), :method => :delete
     %p
+    .hr
+    .hr
     = render :partial => "attachments", :locals => {:attachments => @attachments}
     = render :partial => "new_attachment", :locals => {:user => @user, :document => @document}
     %p

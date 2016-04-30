@@ -13,7 +13,7 @@
   %p
   Select a collection for this document (optional).
   %BR
-  = collection_select(:document, :collection_id, Collection.all || [], :id, :name, prompt: true) 
+  = collection_select(:document, :collection_id, Collection.where(:user_id => session[:user_id]) || [], :id, :name, prompt: true) 
   %p
   = label :document, :tag_list,  'Tags: '
   = text_field :document, :tag_list, { :placeholder => "Tags separated by commas", :size => "35px" }
