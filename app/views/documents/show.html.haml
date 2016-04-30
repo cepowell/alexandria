@@ -60,8 +60,11 @@
                         %td= curPer.access
                         %td= link_to 'Remove Access', remove_share_path(curPer.id), :method => :delete
     %p
+    = render :partial => "attachments", :locals => {:attachments => @attachments}
+    = render :partial => "new_attachment", :locals => {:user => @user, :document => @document}
+    %p
     .hr
-    = link_to 'Edit info ', edit_document_path(@document)
+    = link_to 'Edit ', edit_document_path(@document)
     %br
     %br
     = link_to ' Return to My Work ', home_index_path
@@ -73,7 +76,7 @@
 - else 
     - if @perm=="revise"
         .hr
-        = link_to 'Edit info ', edit_document_path(@document)
+        = link_to 'Edit ', edit_document_path(@document)
         %br
         %br
     = link_to 'Return to shared documents ', shared_path

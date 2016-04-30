@@ -2,16 +2,23 @@
 #
 # Table name: users
 #
-#  id              :integer         not null, primary key
-#  first           :string
-#  last            :string
-#  email           :string
-#  password        :string
-#  password_digest :string
-#  provider        :string
-#  emailOptOut     :boolean
-#  created_at      :datetime        not null
-#  updated_at      :datetime        not null
+#  id               :integer         not null, primary key
+#  first            :string
+#  last             :string
+#  email            :string
+#  password         :string
+#  password_digest  :string
+#  provider         :string
+#  emailOptOut      :boolean
+#  created_at       :datetime        not null
+#  updated_at       :datetime        not null
+#  penname          :string
+#  description      :text
+#  uid              :string
+#  oauth_token      :string
+#  oauth_expires_at :datetime
+#  reset_digest     :string
+#  reset_sent_at    :datetime
 #
 
 class User < ActiveRecord::Base

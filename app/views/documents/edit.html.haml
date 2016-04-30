@@ -31,3 +31,5 @@
   %br
   = submit_tag 'Save Changes'
   
+= render :partial => "attachments", :locals => {:attachments => @attachments}
+= render :partial => "new_attachment", :locals => {:user => @user, :document => @document}

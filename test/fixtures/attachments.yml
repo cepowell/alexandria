@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: attachments
+#
+#  id                :integer         not null, primary key
+#  name              :string
+#  user_id           :integer
+#  document_id       :integer
+#  created_at        :datetime        not null
+#  updated_at        :datetime        not null
+#  file_file_name    :string
+#  file_content_type :string
+#  file_file_size    :integer
+#  file_updated_at   :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+
+two:
+  name: MyString

@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   root 'published#index'
   
   #adding document routes
-  resources :documents
+  resources :documents do
+    resources :attachments, only: [:new, :create, :index, :destroy]
+  end
+  
   get 'shared' => 'documents#shared', :as => :shared
   post 'documents/:id/share' => 'documents#share', :as => :share_document
   delete 'documents/share/:id' => 'documents#removeShare', :as => :remove_share

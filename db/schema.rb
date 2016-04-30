@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160427224333) do
+ActiveRecord::Schema.define(version: 20160430174710) do
+
+  create_table "attachments", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.integer  "document_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+  end
+
+  add_index "attachments", ["document_id"], name: "index_attachments_on_document_id"
+  add_index "attachments", ["user_id"], name: "index_attachments_on_user_id"
 
   create_table "authorizations", force: :cascade do |t|
     t.string   "provider"

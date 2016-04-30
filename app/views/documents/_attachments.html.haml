@@ -1,0 +1,19 @@
+%h4 <center>Attachments</center>
+%br
+- if !@attachments.empty?
+    %table.alt#documents
+        %thead
+            %tr
+                %th Attachment id
+                %th Attachment Name
+                %th user id
+                %th document id
+                %th Delete
+        %tbody
+            - @attachments.each do |attachment|
+                %tr
+                    %td= attachment.id
+                    %td= link_to attachment.file_file_name, attachment.file.url
+                    %td= attachment.user_id
+                    %td= attachment.document_id
+                    %td= link_to 'Remove', document_attachment_path(attachment.document_id, attachment.id), :method => :delete
