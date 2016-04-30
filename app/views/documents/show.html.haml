@@ -9,6 +9,14 @@
     != @file
 %br
 %br
+-if @perm=="owner" || @perm=="revise"
+    = render :partial => "new_attachment", :locals => {:user => @user, :document => @document}
+
+-if !@attachments.empty?
+    = render :partial => "attachments", :locals => {:attachments => @attachments}
+
+%br
+%br
 
 %h6 #{@document.impressionist_count} views so far!
 <h6>
@@ -62,8 +70,6 @@
     %p
     .hr
     .hr
-    = render :partial => "attachments", :locals => {:attachments => @attachments}
-    = render :partial => "new_attachment", :locals => {:user => @user, :document => @document}
     %p
     .hr
     = link_to 'Edit ', edit_document_path(@document)

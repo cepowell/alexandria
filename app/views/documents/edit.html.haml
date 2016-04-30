@@ -13,12 +13,8 @@
     </h5>
   - else 
     %h4 #{@document.title}
-  /input id=body, type=hidden, value=body
   = hidden_field :document, "content", value: @curFile
   %trix-editor{:input => "document_content", :placeholder => "Your text goes here... Happy writing!"}
-  /input id=document_body, type=hidden
-  /= hidden_field :document, :body
-  /%trix-editor{:input => "document_body", :placeholder => "Your text goes here... Happy writing!"}
   %p
   - if session[:user_id]==@document.user_id 
     %h6 Select a collection for this document (optional).
@@ -29,7 +25,9 @@
   </h6>
   = text_field :document, :tag_list, { :placeholder => "Tags separated by commas", :size => "35px" }
   %br
+  %br
+  - if session[:user_id]==@document.user_id 
+    %h6 Attach files
+    = render :partial => "new_attachment", :locals => {:user => @user, :document => @document}
+  = render :partial => "attachments", :locals => {:attachments => @attachments}
   = submit_tag 'Save Changes'
-  
-= render :partial => "attachments", :locals => {:attachments => @attachments}
-= render :partial => "new_attachment", :locals => {:user => @user, :document => @document}

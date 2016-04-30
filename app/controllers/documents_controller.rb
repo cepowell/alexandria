@@ -15,14 +15,13 @@ class DocumentsController < ApplicationController
   end
   
   def new
-    @attachments = Attachment.where(document_id: params[:id])
   end
   
   def show
     begin
       sessionId = session[:user_id]
       @document = Document.find(params[:id])
-      @attachments = Attachment.where(document_id: params[:id])
+      @attachments = getAttachments(@document)
       @comments = getComments(@document)
       @likes = getLikes(@document)
       @map = commentsMap(@comments)
@@ -70,7 +69,6 @@ class DocumentsController < ApplicationController
     s3 = AWS::S3.new(:access_key_id => ENV['AWS_ACCESS_KEY_ID'], :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'])
     bucket = s3.buckets[ENV['S3_BUCKET_NAME']]
     bucket.objects["#{s3_file_path}"].write(content)
-    @attachments = Attachment.where(document_id: params[:id])
     redirect_to document_path(@document)
   end
   
@@ -101,6 +99,7 @@ class DocumentsController < ApplicationController
   def edit
     begin 
       @document = Document.find params[:id]
+      @attachments = getAttachments(@document)
       if session[:user_id] == @document.user_id
         @perm = "owner"
       else
@@ -111,7 +110,6 @@ class DocumentsController < ApplicationController
       s3 = AWS::S3.new(:access_key_id => ENV['AWS_ACCESS_KEY_ID'], :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'])
       bucket = s3.buckets[ENV['S3_BUCKET_NAME']]
       @curFile = bucket.objects["#{s3_file_path}"].read
-      @attachments = Attachment.where(document_id: params[:id])
       #raise @curFile
     rescue
       redirect_to root_path

@@ -43,6 +43,10 @@ class ApplicationController < ActionController::Base
     return Comment.where(document_id: doc.id)
   end
   
+  def getAttachments(doc)
+    return Attachment.where(document_id: doc.id)
+  end
+  
   def commentsMap(comments)
     map = Hash.new
     comments.each do |comment|
