@@ -62,8 +62,8 @@
     %p
     .hr
     .hr
-    = render :partial => "attachments", :locals => {:attachments => @attachments}
-    = render :partial => "new_attachment", :locals => {:user => @user, :document => @document}
+    /= render :partial => "attachments", :locals => {:attachments => @attachments}
+    /= render :partial => "new_attachment", :locals => {:user => @user, :document => @document}
     %p
     .hr
     = link_to 'Edit ', edit_document_path(@document)
