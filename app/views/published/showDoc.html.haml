@@ -7,10 +7,10 @@
 
 .trix-content
     != @file
-%br
-%br
-.hr
 -if !@attachments.empty?
+    %br
+    %br
+    .hr
     = render :partial => "attachments", :locals => {:attachments => @attachments}
 %br
 %p
