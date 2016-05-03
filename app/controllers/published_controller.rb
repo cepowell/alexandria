@@ -43,6 +43,7 @@ class PublishedController < ApplicationController
         bucket = s3.buckets[ENV['S3_BUCKET_NAME']]
         @file = bucket.objects["#{s3_file_path}"].read
         
+        @attachments = getAttachments(@document)
         @comments = getComments(@document)
         @map = commentsMap(@comments)
         @likes = getLikes(@document)
@@ -78,6 +79,7 @@ class PublishedController < ApplicationController
         s3 = AWS::S3.new(:access_key_id => ENV['AWS_ACCESS_KEY_ID'], :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'])
         bucket = s3.buckets[ENV['S3_BUCKET_NAME']]
         @file = bucket.objects["#{s3_file_path}"].read
+        @attachments = getAttachments(@document)
         @comments = getComments(@document)
         @map = commentsMap(@comments)
         @likes = getLikes(@document)

@@ -175,6 +175,7 @@ class DocumentsController < ApplicationController
     end
     @user = User.find(session[:user_id])
     @documents = Document.where(id: docIds)
+    @attachments = Attachment.where(document_id: docIds)
     @map = commentsMap(@documents)
     @map2 = Hash.new
     perms.each do |perm|
