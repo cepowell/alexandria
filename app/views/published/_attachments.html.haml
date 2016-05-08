@@ -5,9 +5,7 @@
         %thead
             %tr
                 %th File
-                %th Delete
         %tbody
             - @attachments.each do |attachment|
                 %tr
                     %td= link_to attachment.file_file_name, attachment.file.url
-                    %td= link_to 'Remove', document_attachment_path(attachment.document_id, attachment.id), :method => :delete
